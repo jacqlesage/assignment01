@@ -4,6 +4,7 @@
     Author     : James
 --%>
 
+<%@page import="controller.CustomerDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,6 +34,7 @@
                 <li class="menu-text"><a href="#">DOLLAR LUXURY</a></li>
             </ul>
         </div>
+        <% if (CustomerDAO.customerFound == false) { %>
         <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
                 <li class="has-submenu">
@@ -45,6 +47,23 @@
                                 <li><button class="button">Submit</button></li>
                             </form>
                         </div>
+                                      <%  }else if(CustomerDAO.customerFound){ %>
+                                      
+             <%--Change the below , should just show the customers name and blank out login.--%>       
+             <div class="top-bar-right">
+            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
+                <li class="has-submenu">
+                    <a href="login.html">Name Should go herexxx</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <div class="submenu-form">
+                            <form method="post" action="LogInServlet">
+                                <li><p>Email:</p><input type="text" name="Email"></input></li>
+                                <li><p>Password:</p><input type="text" name="Password"></input></li>
+                                <li><button class="button">Submit</button></li>
+                            </form>
+                        </div>
+                                      
+                                      <%} %>
                     </ul>
                 </li>
                 <li class="has-submenu">

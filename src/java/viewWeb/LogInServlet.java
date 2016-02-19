@@ -38,6 +38,13 @@ public class LogInServlet extends HttpServlet{
         CustomerDAO cda = new CustomerDAO();
         try {
             cda.findCustomer(emailAddress, password);
+            
+            //if the
+            if(CustomerDAO.customerFound == true){
+                
+                response.sendRedirect("http://localhost:8084/");
+            }
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

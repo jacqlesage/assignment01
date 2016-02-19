@@ -13,6 +13,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
+import javax.servlet.http.HttpServletResponse;
 
 
 
@@ -23,7 +24,7 @@ import javax.servlet.*;
 public class CustomerDAO {
 
     //Dbconnect cDAO = new Dbconnect();
-      
+      public static boolean customerFound = false;
     
     
     
@@ -49,10 +50,14 @@ public class CustomerDAO {
                  ResultSet rs =stmt.executeQuery();
                 
                  while(rs.next()){
-                 
+                 customerFound = true;
                  //print out to test if somthing is found
                  System.out.println("found customer");
-                 
+                 //customer has been found so we need to now pull out the customer info
+                 //and change the main page to say hello customer name
+                 //also need to make the dash board information available
+                 //else direct the customer back to either a / signup ir b/back to login option
+                 //with some information to show that the user name is incorrect.
                  }
                 
                  
