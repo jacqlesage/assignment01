@@ -52,15 +52,19 @@
              <%--Change the below , should just show the customers name and blank out login.--%>       
              <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                <li class="has-submenu">
-                    <a href="login.html">Name Should go herexxx</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <div class="submenu-form">
-                            <form method="post" action="LogInServlet">
+                <%-- <li class="has-submenu"> --%>
+                <form method="post" action="LogOutServlet">    
+                    <a href="logOut"><button type="submit" id="logOut">Logout</button> </a>
+                </form>
+                    <%--<ul class="submenu menu vertical" data-submenu--%>
+                        <%--<div class="submenu-form"> --%>
+                        <%--
+                            <form method="post" action="LogOutServlet">
                                 <li><p>Email:</p><input type="text" name="Email"></input></li>
                                 <li><p>Password:</p><input type="text" name="Password"></input></li>
                                 <li><button class="button">Submit</button></li>
                             </form>
+                        --%>
                         </div>
                                       
                                       <%} %>
