@@ -42,7 +42,7 @@ public class LogInServlet extends HttpServlet{
             //if the
             if(CustomerDAO.customerFound == true){
                 
-                response.sendRedirect("http://localhost:8084/");
+                response.sendRedirect("http://localhost:9999/index.jsp");
             }
             
         } catch (ClassNotFoundException ex) {
