@@ -35,8 +35,18 @@ public class UserSignUp extends HttpServlet {
             throws ServletException, IOException{
               /* TODO output your page here. You may use following sample code. */
         System.out.println("User signup servlet");
-        String emailAddress = request.getParameter("Email");
-        String password = request.getParameter("Password");;
+        String user_first_name = request.getParameter("user_first_name");
+        String user_last_name = request.getParameter("user_last_name");
+        String user_email = request.getParameter("user_email");
+        String user_phone = request.getParameter("user_phone");
+        String user_address_1 = request.getParameter("user_address_1");
+        String user_address_2 = request.getParameter("user_address_2");
+        String user_region = request.getParameter("user_region");
+        String user_post_code = request.getParameter("user_post_code");
+        String user_password = request.getParameter("user_password");
+        String user_confirm_password = request.getParameter("user_confirm_password");
+        String user_age = request.getParameter("user_age");
+        
         
         try {
             //cda.findCustomer(emailAddress, password);
