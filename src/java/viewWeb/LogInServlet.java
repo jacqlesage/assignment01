@@ -32,7 +32,7 @@ public class LogInServlet extends HttpServlet{
         
         System.out.println(password);
         System.out.println(emailAddress);
-        
+         
         //check database for email address
         //
         CustomerDAO cda = new CustomerDAO();

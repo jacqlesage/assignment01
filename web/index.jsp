@@ -50,21 +50,15 @@
                                       <%  }else if(CustomerDAO.customerFound){ %>
                                       
              <%--Change the below , should just show the customers name and blank out login.--%>       
-             <div class="top-bar-right">
+            <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                <%-- <li class="has-submenu"> --%>
-                <form method="post" action="LogOutServlet">    
-                    <a href="logOut"><button type="submit" id="logOut">Logout</button> </a>
-                </form>
-                    <%--<ul class="submenu menu vertical" data-submenu--%>
-                        <%--<div class="submenu-form"> --%>
-                        <%--
+                
+                    <a href="login.html">Logout</a>
+                    
+                        
                             <form method="post" action="LogOutServlet">
-                                <li><p>Email:</p><input type="text" name="Email"></input></li>
-                                <li><p>Password:</p><input type="text" name="Password"></input></li>
-                                <li><button class="button">Submit</button></li>
+                                <li><button class="button">Logout</button></li>
                             </form>
-                        --%>
                         </div>
                                       
                                       <%} %>
@@ -256,7 +250,7 @@
                     </p>
 
                     <h2>Enter your details to get started</h2>
-                    <form id="sign-up" action="dashboard.html" method="post">
+                    <form id="sign-up" action ="UserSignUpServlet" method="post">  <!--action="dashboard.html"-->
                         <div class="row">
                             <div class="large-6 columns">
                                 <label>First Name:</label>
@@ -278,7 +272,7 @@
                             </div>
                             <div class="large-4 columns">
                                 <label>Age (optional)</label>
-                                <select>
+                                <select input type ="text" name = "user_age">
                                     <option value="18-25">18-25</option>
                                     <option value="26-35">26-35</option>
                                     <option value="35-50">35-50</option>

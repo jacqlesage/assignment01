@@ -5,6 +5,7 @@
  */
 package viewWeb;
 
+import controller.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,11 +33,13 @@ public class LogOutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        HttpSession session = request.getSession();
+       System.out.println("In logout servlet");
+        CustomerDAO.customerFound = false;
+       HttpSession session = request.getSession();
         session.invalidate();
-        response.sendRedirect("localhost:9999/index.jsp");
+        //put customer found back to false to remake webpage heading bar showing login
         
+        response.sendRedirect("index.jsp");
         }
     
 

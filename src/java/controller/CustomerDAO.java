@@ -31,7 +31,7 @@ public class CustomerDAO {
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
     
     public void findCustomer(String email, String password) throws ClassNotFoundException{
-        System.out.println("CCCCCCCCCxxxCCCCC");
+        
          String sql = "select * from dollarlogintable where email = ? and password = ?";
         
           
@@ -67,6 +67,28 @@ public class CustomerDAO {
              }
         
          }   
+    
+    /**
+     * This method is for the setup of the new customer
+     *
+     * @param user_first_name
+     * @param user_last_name
+     * @param user_email
+     * @param user_phone
+     * @param user_address_1
+     * @param user_address_2
+     * @param user_region
+     * @param user_post_code
+     * @param user_password
+     * @param user_confirm_password
+     * @param user_age
+     */
+    public void newCustomerSetup(String user_first_name, String user_last_name, String user_email,
+    String user_phone, String user_address_1, String user_address_2, String user_region, String user_post_code,
+    String user_password, String user_confirm_password, String user_age)
+    {
+        
+    }
         
     
     }
