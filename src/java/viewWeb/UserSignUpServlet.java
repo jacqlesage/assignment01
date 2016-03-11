@@ -5,6 +5,7 @@
  */
 package viewWeb;
 
+import controller.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author James
  */
-@WebServlet(name = "UserSignUp", urlPatterns = {"/UserSignUp"})
+@WebServlet(name = "UserSignUpServlet", urlPatterns = {"/UserSignUpServlet"})
 public class UserSignUpServlet extends HttpServlet {
 
     /**
@@ -41,15 +42,19 @@ public class UserSignUpServlet extends HttpServlet {
         String user_phone = request.getParameter("user_phone");
         String user_address_1 = request.getParameter("user_address_1");
         String user_address_2 = request.getParameter("user_address_2");
-        String user_region = request.getParameter("user_region");
+        String user_suburb = request.getParameter("pineHill");
+        String user_city = request.getParameter("user_region");
         String user_post_code = request.getParameter("user_post_code");
         String user_password = request.getParameter("user_password");
         String user_confirm_password = request.getParameter("user_confirm_password");
         String user_age = request.getParameter("user_age");
         
+        CustomerDAO cda = new CustomerDAO();
         
         try {
-            //cda.findCustomer(emailAddress, password);
+            cda.newCustomerSetup(user_first_name, user_last_name, user_age, 
+              user_address_1, user_address_2, user_suburb, user_city, user_post_code, user_phone, user_email,
+              user_password, user_confirm_password);
             
             //if the
             //if(CustomerDAO.customerFound == true){

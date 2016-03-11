@@ -83,14 +83,14 @@ public class CustomerDAO {
      * @param user_confirm_password
      * @param user_age
      */
-    public void newCustomerSetup(String user_first_name, String user_last_name, String user_email,
-    String user_phone, String user_address_1, String user_address_2, String user_region, String user_post_code,
-    String user_password, String user_confirm_password, String user_age)
+    public void newCustomerSetup(String user_first_name, String user_last_name, String user_age,
+     String user_address_1, String user_address_2, String user_suburb, String user_city, String user_post_code,
+     String user_phone, String user_email, String user_password, String user_confirm_password) throws ClassNotFoundException
     {
         //I need to find out how to add a customer number automatically with every sign up and deal with pass hash#
         //also need to deal with putting the password into another table //logintable
-        String sql = "INSERT INTO customertable user_first_name = ?, user_last_name = ?, user_email =?, "
-                + "user_phone = ?,user_address_1 = ?, user_address_2 = ?, user_region = ?, user_post_code =?,"
+        String sql = "INSERT INTO customertable customerNumber int NOT NULL AUTO_INCREMENT, user_first_name = ?, user_last_name = ?, user_email =?, "
+                + "user_phone = ?,user_address_1 = ?, user_address_2 = ?, user_suburb = ?, user_city = ?, user_post_code =?,"
                 + " user_password = ?, user_confirm_password= ?,user_age = ?";
         
           
@@ -105,14 +105,26 @@ public class CustomerDAO {
                  //create the statement that you want to find from the string
                  PreparedStatement stmt = con.prepareStatement(sql);
                  
-                 stmt.setString(1, email);
-                 stmt.setString(2, password);
+                 stmt.setString(2, user_first_name);
+                 stmt.setString(3, user_last_name);
+                 stmt.setString(4, user_age);
+                 stmt.setString(5, user_address_1);
+                 stmt.setString(6, user_address_2);
+                 stmt.setString(7, user_suburb);
+                 stmt.setString(8, user_city);
+                 stmt.setString(9, user_post_code);
+                 stmt.setString(10, user_phone);
+                 stmt.setString(11, user_email);
+                 
+                 stmt.setString(12, user_password);
+                 stmt.setString(13, user_confirm_password);
+                 
                  ResultSet rs =stmt.executeQuery();
                 
                  while(rs.next()){
-                 customerFound = true;
+                 
                  //print out to test if somthing is found
-                 System.out.println("found customer");
+                 System.out.println("new  customer setup");
                  //customer has been found so we need to now pull out the customer info
                  //and change the main page to say hello customer name
                  //also need to make the dash board information available
