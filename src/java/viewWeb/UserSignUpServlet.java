@@ -53,7 +53,7 @@ public class UserSignUpServlet extends HttpServlet {
         CustomerDAO cda = new CustomerDAO();
         
         try {
-            cda.newCustomerSetup(AutoCustomerNum,user_first_name, user_last_name, user_age, 
+            cda.newCustomerSetup(0, user_first_name, user_last_name, user_age, 
               user_address_1, user_address_2, user_suburb, user_city, user_post_code, user_phone, user_email,
               user_password, user_confirm_password);
             
