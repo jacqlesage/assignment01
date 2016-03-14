@@ -48,18 +48,19 @@ public class UserSignUpServlet extends HttpServlet {
         String user_password = request.getParameter("user_password");
         String user_confirm_password = request.getParameter("user_confirm_password");
         String user_age = request.getParameter("user_age");
+        int AutoCustomerNum=0;
         
         CustomerDAO cda = new CustomerDAO();
         
         try {
-            cda.newCustomerSetup(user_first_name, user_last_name, user_age, 
+            cda.newCustomerSetup(AutoCustomerNum,user_first_name, user_last_name, user_age, 
               user_address_1, user_address_2, user_suburb, user_city, user_post_code, user_phone, user_email,
               user_password, user_confirm_password);
             
             //if the
             //if(CustomerDAO.customerFound == true){
                 
-                response.sendRedirect("http://localhost:9999/index.jsp");
+                //response.sendRedirect("http://localhost:9999/index.jsp");
             
           //read up on what errors I need and which exceptions I should be using here  
         } catch (Exception ex) {
