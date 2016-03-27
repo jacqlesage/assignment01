@@ -9,6 +9,7 @@ package controller;
 
 
 import dbconnection.Dbconnect;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,14 +91,26 @@ public class CustomerDAO {
      String user_address_1, String user_address_2, String user_suburb, String user_city, String user_post_code,
      String user_phone, String user_email, String user_password, String user_confirm_password) throws ClassNotFoundException
     {
+        String salt = "";
+        String hash = "";
+        
+          try {
+              salt = CreateHashAndSalt.createSalt();
+              hash = CreateHashAndSalt.createHash(user_password);
+          } catch (NoSuchAlgorithmException ex) {
+              Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
         //I need to find out how to add a customer number automatically with every sign up and deal with pass hash#
         //also need to deal with putting the password into another table //logintable
         String sql = "INSERT INTO customertable(customerNumber, customerFirstName, customerLastName, customerAge, customerStAdd1,"
                 + "customerStAdd2, customerSuburb, customerCity, customerPostCode, customerPhone, customerEmail)"
                 + "values(?,?,?,?,?,?,?,?,?,?,?)";
        
+        String sql2 = "INSERT INTO dollarlogintable(email, password, active, hash, salt)"
+                + "values(?,?,?,?,?)";
         
-               
+                               
              try {
                  //change this code to meet new signup code. <- copied from above
                  //had to add this to register driver for some reason. 
@@ -109,6 +122,8 @@ public class CustomerDAO {
                   System.out.println("c cus first name " + user_age);
                  //create the statement that you want to find from the string
                PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+               //add info to loginTable
+                PreparedStatement stmt2 = con.prepareStatement(sql2);
                
                 stmt.setNull(1, Types.INTEGER);
                  stmt.setString(2, user_first_name);
@@ -122,8 +137,13 @@ public class CustomerDAO {
                  stmt.setString(10, user_phone);
                  stmt.setString(11, user_email);
                  
-                // stmt.setString(11, user_password);
-                 //stmt.setString(12, user_confirm_password);
+                 stmt2.setString(1, user_email);
+                 stmt2.setString(2, salt + hash);
+                 stmt2.setInt(3, 0);
+                 stmt2.setString(4, hash);
+                 stmt2.setString(5, salt);
+                 
+                 System.err.println(salt + " " + hash);
                  
                  //int rs;
                stmt.executeUpdate();
