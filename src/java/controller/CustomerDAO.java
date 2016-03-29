@@ -143,10 +143,11 @@ public class CustomerDAO {
                  stmt2.setString(4, hash);
                  stmt2.setString(5, salt);
                  
-                 System.err.println(salt + " " + hash);
+                 System.err.println(salt + " " +  hash);
                  
                  //int rs;
                stmt.executeUpdate();
+               stmt2.executeUpdate();
                 int x = 0;
 //                 while(0 < rs){
 //                 
