@@ -33,13 +33,13 @@ public class CustomerDAO {
     
     public void findCustomer(String email, String password) throws ClassNotFoundException{
         
-         String sql = "select * from dollarlogintable where email = ? and password = ?";
+         String sql = "select * from dollarlogintable where email = ?";
         
           
              try {
                  //had to add this to register driver for some reason. 
                  Class.forName("com.mysql.jdbc.Driver");
-       
+                   
                  //connect to DB
                  Connection con = DriverManager.getConnection(url, "root", "");
               
@@ -47,18 +47,40 @@ public class CustomerDAO {
                  PreparedStatement stmt = con.prepareStatement(sql);
                  
                  stmt.setString(1, email);
-                 stmt.setString(2, password);
+                 //stmt.setString(2, password);
                  ResultSet rs =stmt.executeQuery();
-                
+               
                  while(rs.next()){
                  customerFound = true;
                  //print out to test if somthing is found
                  System.out.println("found customer");
-                 //customer has been found so we need to now pull out the customer info
-                 //and change the main page to say hello customer name
-                 //also need to make the dash board information available
-                 //else direct the customer back to either a / signup ir b/back to login option
-                 //with some information to show that the user name is incorrect.
+                 
+                 //confirm password
+                 
+//                 String sqlSalt = "select salt from dollarlogintable where email = email";
+//                 Statement stmtSalt = con.createStatement();
+//                 ResultSet rsSalt = stmt.executeQuery(sqlSalt);
+                 
+                 String saltTemp = rs.getString("salt");
+                 String passwordTemp = rs.getString("password");
+                 System.out.println(" salt temp  " + saltTemp);
+                 
+                     try {
+                         //check password
+                         String hashCheck = CreateHashAndSalt.createHash(saltTemp + password);
+                         if(passwordTemp.equals(hashCheck)){
+                             System.out.println(" passwords match  ");
+                             //customer been found and password is correct/same
+                         
+                         }
+                         //customer has been found so we need to now pull out the customer info
+                         //and change the main page to say hello customer name
+                         //also need to make the dash board information available
+                         //else direct the customer back to either a / signup ir b/back to login option
+                         //with some information to show that the user name is incorrect.
+                     } catch (NoSuchAlgorithmException ex) {
+                         Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+                     }
                  }
                 
                  
@@ -96,7 +118,10 @@ public class CustomerDAO {
         
           try {
               salt = CreateHashAndSalt.createSalt();
-              hash = CreateHashAndSalt.createHash(user_password);
+              hash = CreateHashAndSalt.createHash(salt + user_password);
+              System.out.println("salt " + salt);
+              System.out.println("hash " + hash );
+              System.out.println("userpass   " + user_password);
           } catch (NoSuchAlgorithmException ex) {
               Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
           }

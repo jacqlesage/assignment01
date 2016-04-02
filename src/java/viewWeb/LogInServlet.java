@@ -37,6 +37,7 @@ public class LogInServlet extends HttpServlet{
         //
         CustomerDAO cda = new CustomerDAO();
         try {
+             
             cda.findCustomer(emailAddress, password);
             
             //if the
