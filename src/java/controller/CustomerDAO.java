@@ -64,10 +64,14 @@ public class CustomerDAO {
                  String saltTemp = rs.getString("salt");
                  String passwordTemp = rs.getString("password");
                  System.out.println(" salt temp  " + saltTemp);
+                 System.out.println(" password in   " + password);
                  
                      try {
                          //check password
-                         String hashCheck = CreateHashAndSalt.createHash(saltTemp + password);
+                         String hashCheck = CreateHashAndSalt.createHash(saltTemp+password);
+
+                          hashCheck = saltTemp + hashCheck;
+                          
                          if(passwordTemp.equals(hashCheck)){
                              System.out.println(" passwords match  ");
                              //customer been found and password is correct/same
