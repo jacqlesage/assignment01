@@ -22,45 +22,40 @@ import javax.servlet.http.HttpSession;
  * @author James
  */
 @WebServlet(name = "LogInServlet", urlPatterns = {"/LogInServlet"})
-public class LogInServlet extends HttpServlet{
-    
+public class LogInServlet extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        System.out.println("hhhhhhhhhh");
+            throws ServletException, IOException {
         String emailAddress = request.getParameter("Email");
         String password = request.getParameter("Password");
-        
+
         System.out.println(password);
         System.out.println(emailAddress);
-         
+
         //check database for email address
         //
         CustomerDAO cda = new CustomerDAO();
         try {
-             
+
             cda.findCustomer(emailAddress, password);
-            
+
             //if the
-            if(CustomerDAO.customerFound == true){
-                
+            if (CustomerDAO.customerFound == true) {
+
                 response.sendRedirect("http://localhost:9999/index.jsp");
             }
-            
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-       
-    @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    System.out.println("herereer"); 
-    processRequest(request, response);
-    
-    
-        
-}
-    
-}
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println("herereer");
+        processRequest(request, response);
+
+    }
+
+}

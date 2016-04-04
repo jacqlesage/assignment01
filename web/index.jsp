@@ -93,7 +93,7 @@
         <div class="row collapse">
             <div clas="small-12 columns">
                 <div class="small-6 columns end">
-                    <a href="auction.html" class="button content-top-nav expanded">AUCTION</a>
+                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
                 </div>
                 <div class="small-6 columns end">
                     <a href="dashboard.html" class="button content-top-nav expanded">DASHBOARD</a>
@@ -229,14 +229,14 @@
                         <div class="content-side-item">
                             <h3>Current Auction</h3>
                             <h4>iPhone 6s - Any Color!</h4>
-                            <a href="auction.html">
+                            <a href="auction.jsp">
                                 <img src="img/iphone.jpg">
                             </a>
                         </div>
                         <div class="content-side-item">
                             <h3>Upcoming Auctions</h3>
                             <h4>Smart TV</h4>
-                            <a href="auction.html">
+                            <a href="auction.jsp">
                                 <img src="img/LG_smart_TV.jpg">
                             </a>
                         </div>
@@ -335,7 +335,7 @@
                 <p class="slogan">Finger-lickin' good</p>
                 <p class="links">
                     <a href="index.html">Home</a>
-                    <a href="auction.html">Auction</a>
+                    <a href="auction.jsp">Auction</a>
                     <a href="about.html">About</a>
                     <a href="faq.html">Faq</a>
                     <a href="dashboard.html">Dashboard</a>

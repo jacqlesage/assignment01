@@ -63,8 +63,8 @@ public class CustomerDAO {
                  
                  String saltTemp = rs.getString("salt");
                  String passwordTemp = rs.getString("password");
-                 System.out.println(" salt temp  " + saltTemp);
-                 System.out.println(" password in   " + password);
+//                 System.out.println(" salt temp  " + saltTemp);
+//                 System.out.println(" password in   " + password);
                  
                      try {
                          //check password
