@@ -1,87 +1,13 @@
 <%-- 
-    Document   : index
-    Created on : Jan 31, 2016, 1:59:06 PM
+    Document   : index.jsp
+    Created on : Apr 5, 2016, 9:58:22 PM
     Author     : James
 --%>
 
-<%@page import="controller.CustomerDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dollar Luxury | Welcome</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-</head>
+<%@include file = "headerWebPageSegment.jspf" %>
 
-<body>
-
-    <!-- Top Nav / Title Bar -->
-    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
-        <button class="menu-icon" type="button" data-toggle></button>
-        <div class="title-bar-title">Menu</div>
-    </div> 
-
-    <div class="top-bar" id="main-menu">
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text"><a href="#">DOLLAR LUXURY</a></li>
-            </ul>
-        </div>
-        <% if (CustomerDAO.customerFound == false) { %>
-        <div class="top-bar-right">
-            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                <li class="has-submenu">
-                    <a href="login.html">Login</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <div class="submenu-form">
-                            <form method="post" action="LogInServlet">
-                                <li><p>Email:</p><input type="text" name="Email"></input></li>
-                                <li><p>Password:</p><input type="text" name="Password"></input></li>
-                                <li><button class="button">Submit</button></li>
-                            </form>
-                        </div>
-                                      <%  }else if(CustomerDAO.customerFound){ %>
-                                      
-             <%--Change the below , should just show the customers name and blank out login.--%>       
-            <div class="top-bar-right">
-            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                
-                    <a href="login.html">Logout</a>
-                    
-                        
-                            <form method="post" action="LogOutServlet">
-                                <li><button class="button">Logout</button></li>
-                            </form>
-                        </div>
-                                      
-                                      <%} %>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="about.html">About Us</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="termsandconditions.html">Terms &amp; Conditions</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </li>
-                <li><a href="signup.html">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Top Nav end-->
-
-
-    <!-- Header / Banner -->
-
-    <header class="header">
+ <header class="header">
 
     </header>
 
@@ -93,7 +19,7 @@
         <div class="row collapse">
             <div clas="small-12 columns">
                 <div class="small-6 columns end">
-                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
+                    <a href="auction.html" class="button content-top-nav expanded">AUCTION</a>
                 </div>
                 <div class="small-6 columns end">
                     <a href="dashboard.html" class="button content-top-nav expanded">DASHBOARD</a>
@@ -229,14 +155,14 @@
                         <div class="content-side-item">
                             <h3>Current Auction</h3>
                             <h4>iPhone 6s - Any Color!</h4>
-                            <a href="auction.jsp">
+                            <a href="auction.html">
                                 <img src="img/iphone.jpg">
                             </a>
                         </div>
                         <div class="content-side-item">
                             <h3>Upcoming Auctions</h3>
                             <h4>Smart TV</h4>
-                            <a href="auction.jsp">
+                            <a href="auction.html">
                                 <img src="img/LG_smart_TV.jpg">
                             </a>
                         </div>
@@ -250,7 +176,7 @@
                     </p>
 
                     <h2>Enter your details to get started</h2>
-                    <form id="sign-up" action ="UserSignUpServlet" method="post">  <!--action="dashboard.html"-->
+                    <form id="sign-up" action="dashboard.html" method="post">
                         <div class="row">
                             <div class="large-6 columns">
                                 <label>First Name:</label>
@@ -272,7 +198,7 @@
                             </div>
                             <div class="large-4 columns">
                                 <label>Age (optional)</label>
-                                <select input type ="text" name = "user_age">
+                                <select>
                                     <option value="18-25">18-25</option>
                                     <option value="26-35">26-35</option>
                                     <option value="35-50">35-50</option>
@@ -335,7 +261,7 @@
                 <p class="slogan">Finger-lickin' good</p>
                 <p class="links">
                     <a href="index.html">Home</a>
-                    <a href="auction.jsp">Auction</a>
+                    <a href="auction.html">Auction</a>
                     <a href="about.html">About</a>
                     <a href="faq.html">Faq</a>
                     <a href="dashboard.html">Dashboard</a>
@@ -372,4 +298,3 @@
 </body>
 
 </html>
-

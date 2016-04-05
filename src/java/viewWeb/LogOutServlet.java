@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +37,16 @@ public class LogOutServlet extends HttpServlet {
        System.out.println("In logout servlet");
         CustomerDAO.customerFound = false;
        HttpSession session = request.getSession();
-        session.invalidate();
+       Cookie[] cookie = request.getCookies();
+       if(cookie!= null){
+           for(Cookie c: cookie){
+           
+           cookie = null;
+           }
+       
+       } 
+       
+       session.invalidate();
         //put customer found back to false to remake webpage heading bar showing login
         
         response.sendRedirect("index.jsp");

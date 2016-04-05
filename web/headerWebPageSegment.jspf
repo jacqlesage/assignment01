@@ -1,0 +1,74 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="controller.CustomerDAO"%>
+<%@ page pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dollar Luxury | Welcome</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+</head>
+
+<body>
+
+    <!-- Top Nav / Title Bar -->
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+        <button class="menu-icon" type="button" data-toggle></button>
+        <div class="title-bar-title">Menu</div>
+    </div> 
+
+    <div class="top-bar" id="main-menu">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text"><a href="#">DOLLAR LUXURY</a></li>
+            </ul>
+        </div>
+        <% if (CustomerDAO.customerFound == false) { %>
+        <div class="top-bar-right">
+            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
+                <li class="has-submenu">
+                    <a href="login.html">Login</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <div class="submenu-form">
+                            <form method="post" action="LogInServlet">
+                                <li><p>Email:</p><input type="text" name="Email"></input></li>
+                                <li><p>Password:</p><input type="text" name="Password"></input></li>
+                                <li><button class="button">Submit</button></li>
+                            </form>
+                        </div>
+                                      <%  }else if(CustomerDAO.customerFound){ %>
+                                      
+             <%--Change the below , should just show the customers name and blank out login.--%>       
+            <div class="top-bar-right">
+            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
+                
+                    <a href="login.html">Logout</a>
+                    
+                        
+                            <form method="post" action="LogOutServlet">
+                                <li><button class="button">Logout</button></li>
+                            </form>
+                        </div>
+                                      
+                                      <%} %>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="about.html">About Us</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="termsandconditions.html">Terms &amp; Conditions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Top Nav end-->

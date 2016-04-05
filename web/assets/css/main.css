@@ -1,0 +1,87 @@
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+	height: 155px; /* .push must be the same height as .footer */
+}
+
+.footer {
+	border: 1px solid black;
+	background-color: #2F4F4F;
+	vertical-align: bottom;
+}
+
+/* Top Nav (login) etc Top Nav (login) etc Top Nav (login) etc Top Nav (login) etc */
+
+.top-nav {
+	height: 40px;
+	background-color: #2F4F4F;
+    text-align: left;
+    color: white;
+}
+
+.top-nav-item{
+	padding-top: 10px;
+}
+
+.top-nav-container {
+
+}
+
+/* Banner Banner Banner Banner Banner Banner Banner Banner Banner */
+
+.banner{
+	width:100%;
+	background-image: url("../../images/banner.jpg");
+	height: 200px;
+	background-color: #2F4F4F;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-content {
+	text-align: center;
+}
+
+.banner-content h1{
+	margin: 0;
+	font-size: 60pt;
+	letter-spacing: 10px;
+	font-weight: 200;
+}
+
+/* Main Nav Main Nav Main Nav Main Nav Main Nav Main Nav Main Nav */
+
+.main-nav {
+	height: 60px;
+	background-color: white;
+    text-align: center;
+    color: black;
+	border-bottom: 1px solid #D3D3D3;
+}
+
+.main-nav-container {
+
+}
+
+.main-nav-item {
+	margin: 20px;
+}
+
+a {
+	color: inherit;
+}

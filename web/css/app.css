@@ -1,0 +1,543 @@
+@charset "UTF-8";
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic");
+body {
+    font-family: "Open Sans", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/*
+* ----COLORS-----
+* ---------------
+* main red: #99092A;
+* main blue: #305ae5;
+* border light grey: rgba(10, 10, 10, 0.25);
+*
+*/
+
+
+
+
+
+
+/* ----------------- Title Bar / Top Nav CSS --------------------------- */
+
+.title-bar {
+    background: #99092A;
+    /*padding: 0.9rem;*/
+}
+.top-bar {
+    background: #99092A;
+}
+.top-bar ul {
+    background: #99092A;
+}
+.top-bar ul li {
+    background: #99092A;
+}
+.top-bar ul li a {
+    color: #fff;
+    /*font-weight: 600;*/
+}
+.menu-text {
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.9rem;
+    font-weight: 600;
+}
+@media only screen and (max-width: 40em) {
+    .menu-text {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 40em) {
+    .menu:last-child {
+        border-left: 1px solid #000;
+    }
+    .menu:first-child {
+        border-left: none;
+    }
+    .menu li:not(:last-child) {
+        /* Rules here for drop down top-nav */
+    }
+}
+
+.submenu-form li{
+    color: #fff;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.submenu-form p{
+    text-align: left;
+}
+
+
+
+
+
+
+
+/* ----------------- Drop Down Menu CSS --------------------------- */
+
+.dropdown.menu .submenu {
+    border: none;
+}
+.dropdown.menu .is-dropdown-submenu-parent.is-right-arrow > a::after {
+    border-color: #fff transparent transparent;
+}
+.is-drilldown-submenu-parent > a::after {
+    border-color: transparent transparent transparent #fff;
+}
+.js-drilldown-back::before {
+    border-color: transparent #fff transparent transparent;
+}
+
+
+
+
+
+
+
+/* ----------------- Banner / Header Image CSS --------------------------- */
+
+.header {
+    background: url("../img/dollarLuxBannerAlt.jpg") no-repeat center center;
+    height: 18.75rem;
+    background-color: #000;
+    padding: 0;
+    margin: 0;
+}
+@media only screen and (max-width: 36.6em) {
+    .header {
+        background: url("../img/dollarLuxBannerSmall.jpg") no-repeat center center;
+        background-color: #000;
+        height: 12.75rem;
+        overflow: hidden;
+    }
+}
+
+
+.header-dash {
+    text-align: center;
+    background: url("../img/dashboardBannerLarge.jpg") no-repeat center center;
+    background-size: cover;
+    height: 18.75rem;
+    background-color: #000;
+    overflow: hidden;
+}
+@media only screen and (max-width: 36.6em) {
+    .header-dash {
+        background: url("../img/dollarLuxBannerSmall.jpg") no-repeat center center;
+        background-color: #000;
+        height: 12.75rem;
+        overflow: hidden;
+    }
+}
+.header .main-header {
+    color: #666;
+}
+
+
+
+
+
+
+
+/* ----------------- Content top nav --------------------------- */
+
+.header-subnav {
+    background-color: #000;
+}
+.button.content-top-nav {
+    border: 1px solid rgba(10, 10, 10, 0.25);
+    background-color: #fff;
+    color: rgba(10, 10, 10, 0.25);
+    color: #000;
+    margin-bottom: 0 !important;
+}
+.button.content-top-nav-active {
+    background: #829cef;
+    opacity: 0.8;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    transition: all .5s ease-in-out;
+    cursor: default;
+    margin-bottom: 0 !important;
+}
+.button.content-top-nav:hover, .button.content-top-nav:focus {
+    background: #829cef;
+    opacity: 0.8;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    transition: all .5s ease-in-out;
+}
+
+.button.auction-buttons {
+    border-radius: 5px;
+}
+
+.button.auction-buttons a{
+    color: #fff;
+}
+
+.button.auction-buttons:hover, .button.auction-buttons:focus {
+    background: #829cef;
+    opacity: 0.8;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    transition: all .5s ease-in-out;
+}
+
+.sub-nav-item {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+/* ----------------- Content CSS --------------------------- */
+
+.content-wrapper-main h1 {
+    padding: 2rem 0rem;
+}
+
+.content-wrapper-2 {
+    background-color: #305ae5;
+    padding: 3rem 0rem;
+}
+
+.content-wrapper-2 h2 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.content-wrapper-2 label {
+    font-size: 1rem;
+}
+
+.content-wrapper-main {
+    text-align: center;
+    margin: 0;
+}
+
+.content-header {
+    background-color: #305ae5;
+    /* ^^ Main Blue ^^ */
+    padding: 0rem;
+    color: #000;
+    /*margin-bottom: 0rem !important;*/
+    overflow: hidden;
+}
+
+.content-header img {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.content-header-text div {
+    padding: 4rem 1rem;
+}
+
+.content-header-2 {
+    background-color: #fff;
+    padding: 0rem;
+    color: #000;
+    overflow: hidden;
+}
+
+.content-header-2 img {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.content-side-mobile-bottom {
+    text-align: center;
+}
+
+.content-side-item {
+    padding: 1.5rem 0rem;
+}
+
+.content-side-item h3{
+    border-bottom: 1px solid rgba(10, 10, 10, 0.25);
+}
+.content-side-item h4{
+    color: #fff;
+}
+
+.content-side-item img{
+    border: 1px solid black;
+}
+
+.main-content h1 {
+    font-size: 3rem;
+    color: #99092A;
+    letter-spacing: 0.2rem;
+    font-weight: 200;
+    border-bottom: 1px solid #99092A;
+    padding: 1.5rem 0rem;
+}
+.content-iframe {
+    margin: 1rem 0rem;
+    padding: 1rem;
+    height: 16rem;
+    width: 21rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    background-color: #e0b5bf;
+}
+.content-iframe i {
+    font-size: 8rem;
+}
+.box-special-item {}
+
+.box-special-item div {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.25);
+}
+.box-special-item i {
+    font-size: 5rem;
+    color: #305ae5;
+    border: 4px solid #99092A;
+    border-radius: 50%;
+    padding: .02em .32em;
+    background-color: #e0b5bf;
+}
+.form-wrapper {
+    padding: 2rem 0rem;
+}
+.form-wrapper h2 {
+    color: #fff;
+}
+
+.form-wrapper input {
+    border-radius: 8px;
+}
+
+.form-wrapper input:focus {
+    border: 4px solid #e5bb30;
+}
+
+.form-wrapper p{
+    text-align: center;
+}
+
+.form-wrapper i {
+    font-size: 4rem;
+    color: #36891c;
+    border-radius: 50%;
+    padding: .02em .32em;
+    background-color: #97acf2;
+}
+
+.icon-wrapper i {
+    font-size: 4rem;
+    color: #36891c;
+    border-radius: 50%;
+    padding: .02em .32em;
+    background-color: #97acf2;
+}
+
+.icon-wrapper {
+    padding: 2rem 0rem;
+}
+
+.form-wrapper button {
+    padding: 1rem 0rem;
+    margin: 1rem 0rem;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+/* ----------------- Auction specific CSS --------------------------- */
+
+.auction-content-wrapper {
+    text-align: center;
+}
+
+.auction-content-wrapper img{
+    padding: 2rem 0rem;
+}
+
+.auction-content-wrapper h2{
+    padding: 2rem 0rem 0rem;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.25);
+}
+
+.auction-content-wrapper p {
+    font-size: 1.5rem;
+}
+
+
+
+
+
+/* ----------------- Dashboard specific CSS --------------------------- */
+
+.dash-inner {
+    text-align: center;
+    height: 60rem;
+}
+
+.dash-inner-top-bar {
+    background-color: rgba(10, 10, 10, 0.25);
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    padding: 0.7rem 0rem 0.2rem;
+
+}
+
+.dash-inner i {
+    font-size: 1rem;
+    color: #36891c;
+    border-radius: 50%;
+    padding: .02em .32em;
+    background-color: #97acf2;
+}
+
+.dash-inner h1 {
+    padding: 0rem 0rem;
+}
+
+.dash-auction-stats {
+    padding: 2rem 0rem;
+}
+
+.dash-inner-item {
+    margin: 1rem;
+    padding: 2rem 0rem;
+    border: 1px solid black;
+    background-color: rgba(10, 10, 10, 0.25);
+    list-style: none;
+}
+
+.align-left ul, li {
+    text-align: left;
+}
+
+
+
+
+
+/* ----------------- FAQ specific CSS --------------------------- */
+
+.faq-wrapper {
+    padding: 1rem 0rem;
+}
+
+.faq-wrapper h2 {
+    font-size: 2rem;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.25);
+}
+
+.faq-wrapper-item {
+    padding: 1rem 0rem;
+    color: #305ae5;
+}
+
+.faq-wrapper-item p {
+    font-size: 1.2rem;
+    color: rgba(40, 40, 40, 0.9);
+}
+
+
+
+
+
+
+
+
+/* ----------------- Parsely validation CSS --------------------------- */
+
+input.parsley-success, select.parsley-success, textarea.parsley-success {
+    color: #468847;
+    background-color: #DFF0D8;
+    border: 1px solid #D6E9C6;
+}
+input.parsley-error, select.parsley-error, textarea.parsley-error {
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border: 1px solid #EED3D7;
+    padding: 0.5rem;
+}
+.parsley-errors-list {
+    margin: 0.1rem 0 0.15rem;
+    padding: 0;
+    list-style-type: none;
+    font-size: 0.9em;
+    line-height: 0.9em;
+    opacity: 0;
+    color: red;
+    transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -webkit-transition: all .3s ease-in;
+}
+.parsley-errors-list.filled {
+    opacity: 1;
+}
+
+
+
+
+
+
+/* -------- Form CSS (more in foundation.css line 234-404) ---------------- */
+
+
+
+
+
+
+
+
+/* ----------------- Footer CSS --------------------------- */
+
+.footer {
+    background-color: #292c2f;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 4rem 0rem;
+}
+.footer p.slogan {
+    color: #8d9093;
+    font-size: 1.8rem;
+}
+.footer p.copywrite {
+    color: #8f9296;
+    font-size: 0.875rem;
+    margin: 0;
+}
+.footer .links a {
+    list-style: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 3rem 0rem margin: 0;
+}
+.footer .links a::after {
+    content: "•";
+    padding: 0 0.4rem 0 0.8rem;
+}
+.footer .links a:last-child::after {
+    content: "";
+    padding: 0 0.4rem 0 0.8rem;
+}

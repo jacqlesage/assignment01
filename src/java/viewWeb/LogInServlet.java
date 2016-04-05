@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,12 +29,15 @@ public class LogInServlet extends HttpServlet {
             throws ServletException, IOException {
         String emailAddress = request.getParameter("Email");
         String password = request.getParameter("Password");
-
+        
         System.out.println(password);
         System.out.println(emailAddress);
 
         //check database for email address
         //
+        
+             
+        
         CustomerDAO cda = new CustomerDAO();
         try {
 
@@ -41,8 +45,12 @@ public class LogInServlet extends HttpServlet {
 
             //if the
             if (CustomerDAO.customerFound == true) {
-
+                
+                Cookie cusSessionCookie = new Cookie("Dollar", emailAddress);
+                cusSessionCookie.setMaxAge(-1);
+                response.addCookie(cusSessionCookie);
                 response.sendRedirect("http://localhost:9999/index.jsp");
+                
             }
 
         } catch (ClassNotFoundException ex) {
