@@ -26,10 +26,10 @@
         <div class="row collapse">
             <div clas="small-12 columns">
                 <div class="small-6 columns end">
-                    <a href="auction.html" class="button content-top-nav expanded">AUCTION</a>
+                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
                 </div>
                 <div class="small-6 columns end">
-                    <a href="dashboard.html" class="button content-top-nav-active expanded">DASHBOARD</a>
+                    <a href="dashboard.jsp" class="button content-top-nav-active expanded">DASHBOARD</a>
                 </div>
             </div>
         </div>
