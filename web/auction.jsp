@@ -6,55 +6,7 @@
 
 <%@page import="controller.CustomerDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dollar Luxury | Auction</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
-</head>
-
-<body>
-
-    <!-- Top Nav / Title Bar -->
-    <div class="top-bar" id="main-menu">
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text"><a href="index.html">DOLLAR LUXURY</a></li>
-            </ul>
-        </div>
-        <div class="top-bar-right">
-            <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                <li class="has-submenu">
-                    <a href="login.html">Login</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <div class="submenu-form">
-                            <form method="post" action="dashboard.html">
-                                <li>Email: <input type="text"></input></li>
-                                <li>Password: <input type="text"></input></li>
-                                <li><button class="button">Submit</button></li>
-                            </form>
-                        </div>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="about.html">About Us</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="termsandconditions.html">Terms &amp; Conditions</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="signup.html">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
+<%@include file = "headerWebPageSegment.jspf" %>
     <!-- Top Nav end-->
 
 
@@ -72,7 +24,7 @@
         <div class="row collapse">
             <div clas="small-12 columns">
                 <div class="small-6 columns end">
-                    <a href="auction.html" class="button content-top-nav-active expanded">AUCTION</a>
+                    <a href="auction.jsp" class="button content-top-nav-active expanded">AUCTION</a>
                 </div>
                 <div class="small-6 columns end">
                     <a href="dashboard.html" class="button content-top-nav expanded">DASHBOARD</a>
@@ -138,34 +90,4 @@
 
     <!-- Main Page Content ends-->
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="row">
-            <div class="small-12 columns">
-                <p class="slogan">Finger-lickin' good</p>
-                <p class="links">
-                    <a href="index.html">Home</a>
-                    <a href="auction.html">Auction</a>
-                    <a href="about.html">About</a>
-                    <a href="faq.html">Faq</a>
-                    <a href="dashboard.html">Dashboard</a>
-                    <a href="contact.html">Contact</a>
-                </p>
-                <p class="copywrite"><a href="http://conciseit.co.nz">Concise IT Collective, Dunedin, New Zealand.</a></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer ends -->
-
-    <script src="js/vendor/jquery.min.js"></script>
-    <script src="js/vendor/what-input.min.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/vendor/parsley.min.js"></script>
-    <script type="text/javascript">
-        $('#sign-up').parsley();
-    </script>
-</body>
-
-</html>
-
+ <%@include file = "footerWebPageSegment.jspf" %>

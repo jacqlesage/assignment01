@@ -47,14 +47,17 @@
              <%--Change the below , should just show the customers name and blank out login.--%>       
             <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                
-                    <a href="login.html">Logout</a>
-                    
-                        
+                <li class="has-submenu">
+                    <form method="post" action="LogOutServlet">
+                             <li><button class="button">Logout</button></li>
+                            </form>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <div class="submenu-form">
                             <form method="post" action="LogOutServlet">
-                                <li><button class="button">Logout</button></li>
+                             <li><button class="button">Logout</button></li>
                             </form>
                         </div>
+                        
                                       
                                       <%} %>
                     </ul>

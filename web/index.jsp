@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file = "headerWebPageSegment.jspf" %>
 
+
  <header class="header">
 
     </header>
@@ -19,10 +20,10 @@
         <div class="row collapse">
             <div clas="small-12 columns">
                 <div class="small-6 columns end">
-                    <a href="auction.html" class="button content-top-nav expanded">AUCTION</a>
+                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
                 </div>
                 <div class="small-6 columns end">
-                    <a href="dashboard.html" class="button content-top-nav expanded">DASHBOARD</a>
+                    <a href="dashboard.jsp" class="button content-top-nav expanded">DASHBOARD</a>
                 </div>
             </div>
         </div>
@@ -252,49 +253,5 @@
 
 
     <!-- Main Page Content ends-->
-
-    <!-- Footer -->
-
-    <footer class="footer">
-        <div class="row">
-            <div class="small-12 columns">
-                <p class="slogan">Finger-lickin' good</p>
-                <p class="links">
-                    <a href="index.html">Home</a>
-                    <a href="auction.html">Auction</a>
-                    <a href="about.html">About</a>
-                    <a href="faq.html">Faq</a>
-                    <a href="dashboard.html">Dashboard</a>
-                    <a href="contact.html">Contact</a>
-                </p>
-                <p class="copywrite"><a href="http://conciseit.co.nz">Concise IT Collective, Dunedin, New Zealand.</a></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer ends -->
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/vendor/what-input.min.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/vendor/parsley.min.js"></script>
-     <script type="text/javascript">
-        $('#sign-up').parsley();
-    </script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.slide-this').slick({
-                autoplay: true,
-                autoplaySpeed: 3500,
-                dots: true,
-                fade: true,
-                pauseOnHover: true,
-                speed: 1400,
-            });
-        });
-    </script>
-</body>
-
-</html>
+<%@include file = "footerWebPageSegment.jspf" %>
+   

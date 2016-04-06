@@ -51,7 +51,7 @@ public class CustomerDAO {
                  ResultSet rs =stmt.executeQuery();
                
                  while(rs.next()){
-                 customerFound = true;
+                 
                  //print out to test if somthing is found
                  System.out.println("found customer");
                  
@@ -74,6 +74,7 @@ public class CustomerDAO {
                           
                          if(passwordTemp.equals(hashCheck)){
                              System.out.println(" passwords match  ");
+                             customerFound = true;
                              //customer been found and password is correct/same
                          
                          }
