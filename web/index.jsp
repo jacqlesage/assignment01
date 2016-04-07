@@ -16,18 +16,7 @@
 
 
     <!-- Top Content Nav Buttons -->
-    <div class="header-subnav">
-        <div class="row collapse">
-            <div clas="small-12 columns">
-                <div class="small-6 columns end">
-                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
-                </div>
-                <div class="small-6 columns end">
-                    <a href="dashboard.jsp" class="button content-top-nav expanded">DASHBOARD</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@include file = "auctionDashboardWebPageSegment.jspf"%>
 
 
     <!-- Main Page Content -->

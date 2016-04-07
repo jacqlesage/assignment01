@@ -26,7 +26,7 @@
     <div class="top-bar" id="main-menu">
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text"><a href="#">DOLLAR LUXURY</a></li>
+                <li class="menu-text"><a href="index.jsp">DOLLAR LUXURY</a></li>
             </ul>
         </div>
         <% if (CustomerDAO.customerFound == false) { %>
@@ -63,11 +63,11 @@
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="about.html">About Us</a>
+                    <a href="about.jsp">About Us</a>
                     <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="termsandconditions.html">Terms &amp; Conditions</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.jsp">FAQ</a></li>
+                        <li><a href="termsandconditions.jsp">Terms &amp; Conditions</a></li>
+                        <li><a href="about.jsp">About Us</a></li>
                     </ul>
                 </li>
                 <li><a href="signup.html">Sign Up</a></li>

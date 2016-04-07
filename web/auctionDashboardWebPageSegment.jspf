@@ -1,0 +1,23 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="controller.CustomerDAO"%>
+<%@ page pageEncoding="UTF-8" %>
+    <!-- Top Content Nav Buttons -->
+    <div class="header-subnav">
+        <div class="row collapse">
+            <div clas="small-12 columns">
+                <div class="small-6 columns end">
+                    <a href="auction.jsp" class="button content-top-nav expanded">AUCTION</a>
+                </div>
+                <% if(CustomerDAO.customerFound){%>
+                <div class="small-6 columns end">
+                    <a href="dashboard.jsp" class="button content-top-nav expanded">DASHBOARD</a>
+                </div>
+                <%}else{ %>
+                <div class="small-6 columns end">
+                    <a href="#" class="button content-top-nav expanded" button type=" button" disabled>LOGIN FOR DASHBOARD</a>
+                </div> 
+               <% } %>
+            </div>
+        </div>
+    </div>
+
