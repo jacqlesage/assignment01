@@ -50,7 +50,7 @@
                     <img src="img/iphone.jpg">
                     <p>
                         Brand new, in box, iPhone 6s Plus - 128gb. The latest and greatest in smart phone technology.
-                        This phone could be your for just $1, assuming you have already <a href="sigup.html">Signed Up</a> and are <a href="login.html">logged in</a>
+                        This phone could be your for just $1, assuming you have already <a href="index.jsp#signup">Signed Up</a> and are <a href="login.html">logged in</a>
                         use the bid button below to get started.
                     </p>
                     <form method = "post"  action = "BiddingServlet">
@@ -61,7 +61,7 @@
                             <%}%>
                           
                     </form>
-                    <button class="button auction-buttons expanded"><a href="signup.html">Sign Up</a></button>
+                    <button class="button auction-buttons expanded"><a href="index.jsp#signup">Sign Up</a></button>
                     <h3>Product Specs and extra Product info</h3>
                     <p>
                         Info: <a href="http://www.apple.com/nz/iphone-6s">iPhone New Zealand Website</a>
