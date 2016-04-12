@@ -57,7 +57,7 @@
                         <% if(CustomerDAO.customerFound == true){ %>
                     <button class="button auction-buttons expanded" disabled>Bid on this auction</button>
                             <%}else{ %>
-                            <button class="button auction-buttons expanded" disabled>Bid on this auction</button>
+                            <button class="button auction-buttons expanded" disabled>Log in to bid on this auction</button>
                             <%}%>
                           
                     </form>
