@@ -9,7 +9,7 @@
 
     <!-- Top Nav end-->
 
-
+    
     <!-- Header / Banner -->
 
     <header class="header-dash">
@@ -100,6 +100,7 @@
                     <div class="dash-inner-item">
                         <h3>Your Details</h3>
                         <ul>
+                            <!-- Setup a edit servlet to edit details-->
                             <li>Age: 18</li>
                             <li>Name: John Johnston</li>
                             <li>Address: 18 Fake Pl</li>
@@ -118,7 +119,12 @@
                 <div class="dash-inner-item">
                     <div class="large-12 large-centered small-9 small-centered columns">
                         <h2>Add Money to your Account</h2>
+                        <form method="post" action=""
                         <button class="button expanded">Click Here</button>
+                        </form>
+                        <h3>Current account balance<h3>
+                    <div class="medium-6 large-centered small-9 small-centered columns">
+                        <p>$20.00</p>
                     </div>
                 </div>
             </div>
