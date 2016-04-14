@@ -48,16 +48,19 @@
                 <div class="large-9 large-centered columns">
                     <h2>iPhone 6s Plus - 128gb</h2>
                     <img src="img/iphone.jpg">
+                    <% session.setAttribute(img, img/ivalue);
                     <p>
                         Brand new, in box, iPhone 6s Plus - 128gb. The latest and greatest in smart phone technology.
                         This phone could be your for just $1, assuming you have already <a href="index.jsp#signup">Signed Up</a> and are <a href="login.html">logged in</a>
                         use the bid button below to get started.
                     </p>
-                    <form method = "post"  action = "BiddingServlet">
+                    <form method = "post"  action = "dashboard.jsp">
                         <% if(CustomerDAO.customerFound == true){ %>
-                    <button class="button auction-buttons expanded" disabled>Bid on this auction</button>
+                    <button class="button auction-buttons expanded" type="submit">Bid on this auction</button>
+                   
                             <%}else{ %>
                             <button class="button auction-buttons expanded" disabled>Log in to bid on this auction</button>
+                         
                             <%}%>
                           
                     </form>
