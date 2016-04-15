@@ -119,7 +119,11 @@
                 <div class="dash-inner-item">
                     <div class="large-12 large-centered small-9 small-centered columns">
                         <h2>Add Money to your Account</h2>
-                        <form method="post" action=""
+                        <p>Simply type how much you would like to add to your account (in whole dollars)</p>
+                        <form method="post" action="BiddingServlet">
+                        <div class="medium-6 medium-centered small-9 small-centered columns">
+                        <input type="number" name="dollarsIn" min="1" max="9999">
+                        </div>
                         <button class="button expanded">Click Here</button>
                         </form>
                         <h3>Current account balance<h3>
@@ -129,7 +133,13 @@
                 </div>
             </div>
         </div>
-
+            
+            <% String empcode = (String)request.getParameter("img");%>
+            <img src='<%=request.getParameter("empcode")%>'>
+            
+      
+        
+            
     </div>
 
 
