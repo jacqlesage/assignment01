@@ -4,6 +4,7 @@
     Author     : James
 --%>
 
+<%@page import="controller.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file = "headerWebPageSegment.jspf" %>
 
@@ -122,19 +123,23 @@
                         <p>Simply type how much you would like to add to your account (in whole dollars)</p>
                         <form method="post" action="BiddingServlet">
                         <div class="medium-6 medium-centered small-9 small-centered columns">
-                        <input type="number" name="dollarsIn" min="1" max="9999">
+                        <input type="number" name="deposit" min="1" max="9999">
                         </div>
-                        <button class="button expanded">Click Here</button>
+                        <button class="button expanded" type="submit">Click Here</button>
                         </form>
                         <h3>Current account balance<h3>
                     <div class="medium-6 large-centered small-9 small-centered columns">
-                        <p>$20.00</p>
+                        <%AccountDAO y = new AccountDAO();  %>
+                        <%y.setCurrentAccountBalance(1000);  %>
+                        <% System.out.println(y.getCurrentAccountBalance());%>
+                        <p> <%out.println(y.getCurrentAccountBalance());%> </p>
                     </div>
                 </div>
             </div>
         </div>
             
             <% String empcode = (String)request.getParameter("img");%>
+            <% out.println(empcode);%>
             <img src='<%=request.getParameter("empcode")%>'>
             
       

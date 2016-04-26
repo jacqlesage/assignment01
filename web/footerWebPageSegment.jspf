@@ -1,4 +1,5 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="controller.CustomerDAO"%>
 <%@ page pageEncoding="UTF-8" %>
 <!-- Footer -->
 
@@ -11,7 +12,11 @@
                     <a href="auction.jsp">Auction</a>
                     <a href="about.jsp">About</a>
                     <a href="faq.jsp">Faq</a>
+                    <% if(CustomerDAO.customerFound){ %>
                     <a href="dashboard.jsp">Dashboard</a>
+                    <% }else{ %>
+                        <a href="#">Login for Dashboard</a>
+                    <%} %>
                     <a href="contact.jsp">Contact</a>
                 </p>
                 <p class="copywrite"><a href="http://conciseit.co.nz">Concise IT Collective, Dunedin, New Zealand.</a></p>

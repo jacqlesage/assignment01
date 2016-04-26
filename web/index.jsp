@@ -145,14 +145,14 @@
                         <div class="content-side-item">
                             <h3>Current Auction</h3>
                             <h4>iPhone 6s - Any Color!</h4>
-                            <a href="auction.html">
+                            <a href="auction.jsp">
                                 <img src="img/iphone.jpg">
                             </a>
                         </div>
                         <div class="content-side-item">
                             <h3>Upcoming Auctions</h3>
                             <h4>Smart TV</h4>
-                            <a href="auction.html">
+                            <a href="auction.jsp">
                                 <img src="img/LG_smart_TV.jpg">
                             </a>
                         </div>
@@ -165,8 +165,8 @@
                         <i class="fi-check"></i>
                     </p>
 
-                    <h2>Enter your details to get started</h2>
-                    <form id="sign-up" action="dashboard.html" method="post">
+                    <h2><a name = "signup">Enter your details to get started</a></h2>
+                    <form id="sign-up" action="UserSignUpServlet" method="post">
                         <div class="row">
                             <div class="large-6 columns">
                                 <label>First Name:</label>
@@ -186,9 +186,9 @@
                                 <label>Phone Number:</label>
                                 <input type="number" id="phone" name="user_phone" data-parsley-required="true" data-parsley-type="number">
                             </div>
-                            <div class="large-4 columns">
+                            <div class="large-4 columns" >
                                 <label>Age (optional)</label>
-                                <select>
+                                <select name="user_age">
                                     <option value="18-25">18-25</option>
                                     <option value="26-35">26-35</option>
                                     <option value="35-50">35-50</option>

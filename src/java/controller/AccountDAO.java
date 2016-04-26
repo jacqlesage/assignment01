@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
@@ -22,34 +23,57 @@ import java.util.logging.Logger;
  */
 public class AccountDAO {
     
-    private int customerNumber;
-    private double currentAccountBalance;
+   
+    private int currentAccountBalance;
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
-      public double getCurrentAccountBalance() {
-          
-        return currentAccountBalance;
-    }
-
-    //only for test run purposes ??
-    public void setCurrentAccountBalance(double currentAccountBalance) throws ClassNotFoundException {
-
-        this.currentAccountBalance = currentAccountBalance;
-        
-           String sql = "INSERT INTO customeraccountinfo(transaction_id,cusAccBalance)"
-                + "values(?,?)";
+      public int getCurrentAccountBalance() throws ClassNotFoundException {
+          String temp;
+          ResultSet r;
+          int rs =0;
+           //this.currentAccountBalance = currentAccountBalance;
+        //System.out.println(this.currentAccountBalance + " llkjlkjl");
+           String sql = "SELECT customerBalance FROM customerTable";
         
         try{
         
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, "root", "");
             
-            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = con.prepareStatement(sql);
+                                               
+            r = stmt.executeQuery(); 
             
-            stmt.setInt(1, Types.INTEGER);
-            stmt.setDouble(2, currentAccountBalance);
+            while(r.next()){
+                rs = r.getInt("customerBalance");
+            }
             
-             stmt.executeUpdate(); 
+        }  catch (SQLException ex) {
+                 System.out.println("account issues");
+                 Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+          System.out.println(rs);
+        return rs;
+    }
+
+    //only for test run purposes ??
+    public void setCurrentAccountBalance(int currentAccountBalance) throws ClassNotFoundException {
+
+        this.currentAccountBalance = currentAccountBalance;
+        //System.out.println(this.currentAccountBalance + " llkjlkjl");
+           String sql = "UPDATE customertable SET customerBalance =?";
+        
+        try{
+        
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, "root", "");
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setInt(1, currentAccountBalance+getCurrentAccountBalance());
+                        
+            stmt.executeUpdate(); 
             
         }  catch (SQLException ex) {
                  System.out.println("account issues");

@@ -49,13 +49,15 @@ public class UserSignUpServlet extends HttpServlet {
         String user_confirm_password = request.getParameter("user_confirm_password");
         String user_age = request.getParameter("user_age");
         int AutoCustomerNum=0;
+        System.out.println("iouhjnhj " + user_age);
+        
         
         CustomerDAO cda = new CustomerDAO();
         
         try {
             cda.newCustomerSetup(0, user_first_name, user_last_name, user_age, 
               user_address_1, user_address_2, user_suburb, user_city, user_post_code, user_phone, user_email,
-              user_password, user_confirm_password);
+              user_password, user_confirm_password, 0);
             
             //if the
             //if(CustomerDAO.customerFound == true){

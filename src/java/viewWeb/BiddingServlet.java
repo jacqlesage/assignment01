@@ -5,8 +5,11 @@
  */
 package viewWeb;
 
+import controller.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +40,18 @@ public class BiddingServlet extends HttpServlet {
         //other real option is to go to payment gateway - at this stage just set it
         
         String deposit = request.getParameter("deposit");
-        
-        
+
+         try {
+          
+            AccountDAO a = new AccountDAO();
+            a.setCurrentAccountBalance(Integer.parseInt(deposit));
+
+            //place deposit into account table
+            
+             
+        } catch (Exception ex) {
+            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }
