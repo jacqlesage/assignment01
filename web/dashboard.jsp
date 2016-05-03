@@ -102,11 +102,12 @@
                         <h3>Your Details</h3>
                         <ul>
                             <!-- Setup a edit servlet to edit details-->
-                            <li>Age: 18</li>
-                            <li>Name: John Johnston</li>
-                            <li>Address: 18 Fake Pl</li>
-                            <li>Address 2: none</li>
-                            <li>City: FakeVille</li>
+                            <!-- Use custoemr DAO to get personal info and place here-->
+                            <li>Age: <input type="text" name="age" value="getage" readonly></li>
+                            <li>Name: <input type="text" name="name" value="getname" readonly></li>
+                            <li>Address: <input type="text" name="address" value="getaddress" readonly></li>
+                            <li>Address 2: <input type="text" name="address2" value="getaddress2" readonly></li>
+                            <li>City: <input type="text" name="city" value="getcity" readonly></li>
                             <li>
                                 <button class="button">Edit These Details</button>
                             </li>
@@ -130,9 +131,9 @@
                         <h3>Current account balance<h3>
                     <div class="medium-6 large-centered small-9 small-centered columns">
                         <%AccountDAO y = new AccountDAO();  %>
-                        <%y.setCurrentAccountBalance(1000);  %>
+                        
                         <% System.out.println(y.getCurrentAccountBalance());%>
-                        <p> <%out.println(y.getCurrentAccountBalance());%> </p>
+                        <p> <%out.println("$"+y.getCurrentAccountBalance());%> </p>
                     </div>
                 </div>
             </div>

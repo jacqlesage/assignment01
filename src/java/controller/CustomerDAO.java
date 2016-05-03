@@ -198,6 +198,11 @@ public class CustomerDAO {
              }
         
     }
+    
+    public void editCustomerDetails(){
+    //to finish 
+    
+    }
         
     
     }
