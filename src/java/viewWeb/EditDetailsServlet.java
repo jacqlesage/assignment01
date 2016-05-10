@@ -47,7 +47,8 @@ public class EditDetailsServlet extends HttpServlet {
         try {
             
            
-      //  URLConnection connection = new URL("jdbc:mysql://localhost:3306/dollarlogindb").openConnection();
+     //found the below code to show the value of my cookie
+     //http://www.tutorialspoint.com/servlets/servlets-cookies-handling.htm
  Cookie cookie = null;
 	  Cookie[] cookies = null;
       // Get an array of Cookies associated with this domain
