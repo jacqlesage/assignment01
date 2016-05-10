@@ -4,6 +4,7 @@
     Author     : James
 --%>
 
+<%@page import="controller.CustomerObj"%>
 <%@page import="controller.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file = "headerWebPageSegment.jspf" %>
@@ -101,15 +102,19 @@
                     <div class="dash-inner-item">
                         <h3>Your Details</h3>
                         <ul>
+                            <form method="post" action="EditDetailsServlet">
+                           
                             <!-- Setup a edit servlet to edit details-->
                             <!-- Use custoemr DAO to get personal info and place here-->
                             <li>Age: <input type="text" name="age" value="getage" readonly></li>
                             <li>Name: <input type="text" name="name" value="getname" readonly></li>
-                            <li>Address: <input type="text" name="address" value="getaddress" readonly></li>
+                            <li>Address: <input type="text" name="address" value="<>" readonly></li>
                             <li>Address 2: <input type="text" name="address2" value="getaddress2" readonly></li>
                             <li>City: <input type="text" name="city" value="getcity" readonly></li>
                             <li>
+                                
                                 <button class="button">Edit These Details</button>
+                            </form>
                             </li>
                         </ul>
                     </div>

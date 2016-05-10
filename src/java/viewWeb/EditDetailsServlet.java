@@ -5,12 +5,17 @@
  */
 package viewWeb;
 
+import controller.CustomerObj;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +46,33 @@ public class EditDetailsServlet extends HttpServlet {
         
         try {
             
-            
+           
+      //  URLConnection connection = new URL("jdbc:mysql://localhost:3306/dollarlogindb").openConnection();
+ Cookie cookie = null;
+	  Cookie[] cookies = null;
+      // Get an array of Cookies associated with this domain
+      cookies = request.getCookies();
+      
+	  // Set response content type
+      response.setContentType("text/html");
+ 
+      PrintWriter out = response.getWriter();
+      String title = "Reading Cookies Example";
+      String docType =
+      "<!doctype html public \"-//w3c//dtd html 4.0 " +
+      "transitional//en\">\n";
+      out.println(docType +
+                "<html>\n" +
+                "<head><title>" + title + "</title></head>\n" +
+                "<body bgcolor=\"#f0f0f0\">\n" );
+      if( cookies != null ){
+         out.println("<h2> Found Cookies Name and Value</h2>");
+         for (int i = 0; i < cookies.length; i++){
+            cookie = cookies[i];
+            out.print("Name : " + cookie.getName( ) + ",  ");
+            out.print("Value: " + cookie.getValue( )+" <br/>");
+         }
+      }
             
         }catch(Exception ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
