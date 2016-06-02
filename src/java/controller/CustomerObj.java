@@ -29,7 +29,7 @@ public class CustomerObj {
 
     String user_first_name;
     String user_last_name;
-    int user_age;
+    String user_age; //should be int
     String user_address_1;
     String user_address_2;
     String user_suburb;
@@ -64,32 +64,19 @@ public class CustomerObj {
      public CustomerObj() {
 
     }
+     
+      public CustomerObj(String emailAddress) {
+          this.user_email = emailAddress;
+    }
     
 
-    public String getUser_first_name() {
-        return user_first_name;
-    }
-
-    public String getUser_last_name() {
-        return user_last_name;
-    }
-
-    public int getUser_age() {
-        return user_age;
-    }
-
-    public String getUser_address_1() throws ClassNotFoundException, MalformedURLException, IOException {
+    public String getUser_first_name() throws ClassNotFoundException, MalformedURLException, IOException {
+        String email = CustomerObj.this.user_email;
+        String firstName = "";
         
-        Cookie c = null;
-        System.out.println(c.getValue());
+        //System.out.println(email + " *****************   ** * *email in user first name");
         
-        URLConnection connection = new URL("jdbc:mysql://localhost:3306/dollarlogindb").openConnection();
-    List<String> cookies = connection.getHeaderFields().get("Set-Cookie");
-    for(String x: cookies){
-        System.out.println(cookies);
-    }
-        
-        String sql = "select customerStAdd1 from customertable where email = ?";
+        String sql = "select customerFirstName from customertable where customerEmail = ?";
 
         try {
             //had to add this to register driver for some reason. 
@@ -101,14 +88,139 @@ public class CustomerObj {
             //create the statement that you want to find from the string
             PreparedStatement stmt = con.prepareStatement(sql);
 
-//                 stmt.setString(1, email);
+                 stmt.setString(1, email);
             //stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-
+                firstName = rs.getString("customerFirstName");
                 //print out to test if somthing is found
-                System.out.println("found customer");
+                System.out.println("found customer " + firstName);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return firstName;
+        
+       
+      
+    }
+
+   
+
+    public String getUser_last_name() throws ClassNotFoundException {
+        //using the constructor where I passed the email address
+         String email = CustomerObj.this.user_email;
+        String user_last_name = "";
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerLastName from customertable where customerEmail = ?";
+
+        try {
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_last_name = rs.getString("customerLastName");
+                //print out to test if somthing is found
+                System.out.println("found customer " + user_last_name);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+               
+        return user_last_name;
+    }
+
+    public String getUser_age() throws ClassNotFoundException {
+        
+        //using the constructor where I passed the email address
+         String email = CustomerObj.this.user_email;
+         String user_age ="";
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerAge from customertable where customerEmail = ?";
+
+        try {
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_age = rs.getString("customerAge");
+                //print out to test if somthing is found
+                System.out.println("found customer " + user_age);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return user_age;
+    }
+
+    public String getUser_address_1() throws ClassNotFoundException, MalformedURLException, IOException {
+        
+        //using the constructor where I passed the email address
+         String email = CustomerObj.this.user_email;
+        String user_address_1 = "";
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerStAdd1 from customertable where customerEmail = ?";
+
+        try {
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_address_1 = rs.getString("customerStAdd1");
+                //print out to test if somthing is found
+                System.out.println("found customer " + user_address_1);
 
           
             }
@@ -121,7 +233,44 @@ public class CustomerObj {
         return user_address_1;
     }
 
-    public String getUser_address_2() {
+    public String getUser_address_2() throws ClassNotFoundException {
+        
+        //using the constructor where I passed the email address
+         String email = CustomerObj.this.user_email;
+        String user_address_2 = "";
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerStAdd2 from customertable where customerEmail = ?";
+
+        try {
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_address_2 = rs.getString("customerStAdd2");
+                //print out to test if somthing is found
+                System.out.println("found customer " + user_address_2);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         return user_address_2;
     }
 
@@ -129,7 +278,44 @@ public class CustomerObj {
         return user_suburb;
     }
 
-    public String getUser_city() {
+    public String getUser_city() throws ClassNotFoundException {
+        
+        
+        //using the constructor where I passed the email address
+         String email = CustomerObj.this.user_email;
+        String user_city = "";
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerCity from customertable where customerEmail = ?";
+
+        try {
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_city = rs.getString("customerCity");
+                //print out to test if somthing is found
+                System.out.println("found customer " + user_city);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return user_city;
     }
 
@@ -153,4 +339,8 @@ public class CustomerObj {
         return user_confirm_password;
     }
 
+     @Override
+    public String toString() {
+        return "CustomerObj{" + "user_first_name=" + user_first_name + ", user_last_name=" + user_last_name + ", user_age=" + user_age + ", user_address_1=" + user_address_1 + ", user_address_2=" + user_address_2 + ", user_suburb=" + user_suburb + ", user_city=" + user_city + ", user_post_code=" + user_post_code + ", user_phone=" + user_phone + ", user_email=" + user_email + ", user_password=" + user_password + ", user_confirm_password=" + user_confirm_password + ", url=" + url + '}';
+    }
 }

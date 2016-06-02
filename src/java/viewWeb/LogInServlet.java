@@ -7,6 +7,7 @@
 package viewWeb;
 
 import controller.CustomerDAO;
+import controller.CustomerObj;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,8 @@ public class LogInServlet extends HttpServlet {
             throws ServletException, IOException {
         String emailAddress = request.getParameter("Email");
         String password = request.getParameter("Password");
-        
+        HttpSession s = request.getSession();
+
         System.out.println(password);
         System.out.println(emailAddress);
 
@@ -38,18 +40,23 @@ public class LogInServlet extends HttpServlet {
         
              
         
-        CustomerDAO cda = new CustomerDAO();
+        //CustomerDAO cda = 
         try {
 
-            cda.findCustomer(emailAddress, password);
-
+            CustomerObj cus  = new CustomerDAO().findCustomer(emailAddress, password);
+            
             //if the
             if (CustomerDAO.customerFound == true) {
-                
+                System.out.println("in here in try catch log in servlet");
                 Cookie cusSessionCookie = new Cookie("Dollar", emailAddress);
                 cusSessionCookie.setMaxAge(-1);
                 response.addCookie(cusSessionCookie);
                 response.sendRedirect("http://localhost:9999/index.jsp");
+                
+                               
+                s.setAttribute("customer", cus);
+                
+                       
                 
             }
 

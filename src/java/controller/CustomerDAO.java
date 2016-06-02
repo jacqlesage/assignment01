@@ -8,12 +8,15 @@ package controller;
 
 
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import javax.servlet.http.HttpServletRequest;
 import dbconnection.Dbconnect;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -31,7 +34,10 @@ public class CustomerDAO {
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
     
-    public void findCustomer(String email, String password) throws ClassNotFoundException{
+    public CustomerObj findCustomer(String email, String password) throws ClassNotFoundException{
+        
+        CustomerObj cus = new CustomerObj();
+        
         
          String sql = "select * from dollarlogintable where email = ?";
         
@@ -76,6 +82,11 @@ public class CustomerDAO {
                              System.out.println(" passwords match  ");
                              customerFound = true;
                              //customer been found and password is correct/same
+                             cus = new CustomerObj(email);
+                            
+                          
+                               
+                             
                          
                          }
                          //customer has been found so we need to now pull out the customer info
@@ -93,7 +104,9 @@ public class CustomerDAO {
                  System.out.println("no customer found");
                  Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
-        
+             
+             
+             return cus;
          }   
     
     /**

@@ -26,6 +26,7 @@
     <!-- Top Content Nav Buttons -->
    <%@include file = "auctionDashboardWebPageSegment.jspf"%>
 
+   
 
     <div class="dash-inner">
         <h1>DashBoard</h1>
@@ -105,12 +106,12 @@
                             <form method="post" action="EditDetailsServlet">
                            
                             <!-- Setup a edit servlet to edit details-->
-                            <!-- Use custoemr DAO to get personal info and place here-->
-                            <li>Age: <input type="text" name="age" value="getage" readonly></li>
-                            <li>Name: <input type="text" name="name" value="getname" readonly></li>
-                            <li>Address: <input type="text" name="address" value="<>" readonly></li>
-                            <li>Address 2: <input type="text" name="address2" value="getaddress2" readonly></li>
-                            <li>City: <input type="text" name="city" value="getcity" readonly></li>
+                            <!-- Use customer DAO to get personal info and place here-->
+                            <li>Age: <input type="text" name="age" value="<%out.print(c.getUser_age()); %>" readonly></li>
+                            <li>Name: <input type="text" name="name" value="<%out.print(c.getUser_first_name() + " " + c.getUser_last_name()); %>" readonly></li>
+                            <li>Address: <input type="text" name="address" value=<%out.print(c.getUser_address_1()); %> readonly></li>
+                            <li>Address 2: <input type="text" name="address2" value="<%out.print(c.getUser_address_2()); %>" readonly></li>
+                            <li>City: <input type="text" name="city" value="<%out.print(c.getUser_city()); %>" readonly></li>
                             <li>
                                 
                                 <button class="button">Edit These Details</button>

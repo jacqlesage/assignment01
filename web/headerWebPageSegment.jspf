@@ -1,6 +1,29 @@
 <%-- any content can be specified here e.g.: --%>
 <%@page import="controller.CustomerDAO"%>
+<%@page import="controller.CustomerObj"%>
 <%@ page pageEncoding="UTF-8" %>
+
+
+
+<% 
+   CustomerObj c = new CustomerObj();
+    if(CustomerDAO.customerFound){
+    
+    HttpSession session1 = request.getSession();
+       
+   if(session1 == null){
+        System.out.println("Customer is null :(");
+    }else{
+//       c = new CustomerObj();
+       c = (CustomerObj) session1.getAttribute("customer");
+       System.out.println("attrib names " + session1.getAttribute("customer").toString());
+       
+   }
+    }
+         
+%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,14 +65,14 @@
                                 <li><button class="button">Submit</button></li>
                             </form>
                         </div>
-                                      <%  }else if(CustomerDAO.customerFound){ %>
+                                      <%  }else if(CustomerDAO.customerFound && c != null){ %>
                                       
              <%--Change the below , should just show the customers name and blank out login.--%>       
             <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
                 <li class="has-submenu">
                     <form method="post" action="LogOutServlet">
-                             <li><button class="button">Logout</button></li>
+                        <li><button class="button">Logout: <%out.print(c.getUser_first_name());%></button></li>
                             </form>
                     <ul class="submenu menu vertical" data-submenu>
                         <div class="submenu-form">

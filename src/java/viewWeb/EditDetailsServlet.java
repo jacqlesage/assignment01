@@ -70,10 +70,19 @@ public class EditDetailsServlet extends HttpServlet {
          out.println("<h2> Found Cookies Name and Value</h2>");
          for (int i = 0; i < cookies.length; i++){
             cookie = cookies[i];
+            out.print(i);
             out.print("Name : " + cookie.getName( ) + ",  ");
             out.print("Value: " + cookie.getValue( )+" <br/>");
          }
       }
+      
+      //get the cookie to find the sql data 
+     //String emailAddress = cookies[1].getValue();
+     //create customer object
+     //CustomerObj cus = new CustomerObj(emailAddress);
+     
+     
+      
             
         }catch(Exception ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
