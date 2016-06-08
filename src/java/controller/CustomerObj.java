@@ -78,15 +78,17 @@ public class CustomerObj {
         
         String sql = "select customerFirstName from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -122,15 +124,17 @@ public class CustomerObj {
         
         String sql = "select customerLastName from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -163,15 +167,17 @@ public class CustomerObj {
         
         String sql = "select customerAge from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -203,15 +209,17 @@ public class CustomerObj {
         
         String sql = "select customerStAdd1 from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -243,15 +251,17 @@ public class CustomerObj {
         
         String sql = "select customerStAdd2 from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -284,15 +294,17 @@ public class CustomerObj {
         
         String sql = "select customerSuburb from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+             ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -325,15 +337,17 @@ public class CustomerObj {
         
         String sql = "select customerCity from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -365,15 +379,17 @@ public class CustomerObj {
         
         String sql = "select customerPostCode from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+             ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+//            Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+//            PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -405,17 +421,19 @@ public class CustomerObj {
         
         String sql = "select customerPhone from customertable where customerEmail = ?";
 
-        try {
+        try(Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ) {
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
-                 stmt.setString(1, email);
+            stmt.setString(1, email);
             //stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
 
@@ -427,10 +445,11 @@ public class CustomerObj {
           
             }
 
-        } catch (SQLException ex) {
+             } catch (SQLException ex) {
             System.out.println("no customer found");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         return user_phone;
     }
@@ -445,15 +464,17 @@ public class CustomerObj {
         
         String sql = "select customerEmail from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
@@ -486,19 +507,21 @@ public class CustomerObj {
         
         String sql = "select customerCity from customertable where customerEmail = ?";
 
-        try {
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery();  ){
             //had to add this to register driver for some reason. 
             Class.forName("com.mysql.jdbc.Driver");
 
             //connect to DB
-            Connection con = DriverManager.getConnection(url, "root", "");
+            //Connection con = DriverManager.getConnection(url, "root", "");
 
             //create the statement that you want to find from the string
-            PreparedStatement stmt = con.prepareStatement(sql);
+            //PreparedStatement stmt = con.prepareStatement(sql);
 
                  stmt.setString(1, email);
             //stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
+            //ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 user_password = rs.getString("CustomerPostCode");
