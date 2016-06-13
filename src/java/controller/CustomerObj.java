@@ -543,6 +543,92 @@ public class CustomerObj {
         return user_confirm_password;
     }
 
+    public void setUser_first_name(String user_first_name) {
+        
+        this.user_first_name = user_first_name;
+    }
+
+    public void setUser_last_name(String user_last_name) {
+        this.user_last_name = user_last_name;
+    }
+
+    public void setUser_age(String user_age) {
+        this.user_age = user_age;
+    }
+
+    public void setUser_address_1(String user_address_1, String email) throws ClassNotFoundException {
+        
+          
+        this.user_address_1 = user_address_1;
+        System.out.println(user_address_1 + " *****************   ** * *email in user first name in set user");
+        System.out.println(email + " *****************   ** * *email in user first name in set user");
+         //String sql = "UPDATE Employees set age=? WHERE id=?";
+        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setString(1, user_address_1);
+             stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer " + user_address_1 + " in set user address");
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set user");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+
+    public void setUser_address_2(String user_address_2) {
+        this.user_address_2 = user_address_2;
+    }
+
+    public void setUser_suburb(String user_suburb) {
+        this.user_suburb = user_suburb;
+    }
+
+    public void setUser_city(String user_city) {
+        this.user_city = user_city;
+    }
+
+    public void setUser_post_code(int user_post_code) {
+        this.user_post_code = user_post_code;
+    }
+
+    public void setUser_phone(int user_phone) {
+        this.user_phone = user_phone;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
+    }
+
+    public void setUser_confirm_password(String user_confirm_password) {
+        this.user_confirm_password = user_confirm_password;
+    }
+
+    
+    
      @Override
     public String toString() {
         return "CustomerObj{" + "user_first_name=" + user_first_name + ", user_last_name=" + user_last_name + ", user_age=" + user_age + ", user_address_1=" + user_address_1 + ", user_address_2=" + user_address_2 + ", user_suburb=" + user_suburb + ", user_city=" + user_city + ", user_post_code=" + user_post_code + ", user_phone=" + user_phone + ", user_email=" + user_email + ", user_password=" + user_password + ", user_confirm_password=" + user_confirm_password + ", url=" + url + '}';

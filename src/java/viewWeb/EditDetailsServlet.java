@@ -26,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EditDetailsServlet", urlPatterns = {"/EditDetailsServlet"})
 public class EditDetailsServlet extends HttpServlet {
+    
+    
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,15 +41,17 @@ public class EditDetailsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
          String name = request.getParameter("name");
          String address = request.getParameter("address");
          String address2 = request.getParameter("address2");
          String city = request.getParameter("city");
+         String email = request.getParameter("email");
+
+         CustomerObj c = new CustomerObj();
         
         try {
             
-           
+          
      //found the below code to show the value of my cookie
      //http://www.tutorialspoint.com/servlets/servlets-cookies-handling.htm
  Cookie cookie = null;
@@ -74,6 +79,8 @@ public class EditDetailsServlet extends HttpServlet {
             out.print("Name : " + cookie.getName( ) + ",  ");
             out.print("Value: " + cookie.getValue( )+" <br/>");
          }
+         
+         c.setUser_address_1(address, email);
       }
       
       //get the cookie to find the sql data 
@@ -87,6 +94,8 @@ public class EditDetailsServlet extends HttpServlet {
         }catch(Exception ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        response.sendRedirect("http://localhost:9999/dashboard.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

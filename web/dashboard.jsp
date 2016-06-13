@@ -4,10 +4,12 @@
     Author     : James
 --%>
 
+<%@page import="viewWeb.EditDetailsServlet"%>
 <%@page import="controller.CustomerObj"%>
 <%@page import="controller.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file = "headerWebPageSegment.jspf" %>
+
 
     <!-- Top Nav end-->
 
@@ -15,6 +17,8 @@
     <!-- Header / Banner -->
 
     <header class="header-dash">
+        
+      
 
         <!-- back groud image via css line 82 - 94 in app.css -->
 
@@ -25,8 +29,8 @@
 
     <!-- Top Content Nav Buttons -->
    <%@include file = "auctionDashboardWebPageSegment.jspf"%>
+      <script src="js/editDetails.js" type="text/javascript"></script>
 
-   
 
     <div class="dash-inner">
         <h1>DashBoard</h1>
@@ -103,20 +107,27 @@
                     <div class="dash-inner-item">
                         <h3>Your Details</h3>
                         <ul>
-                            <form method="post" action="EditDetailsServlet">
+                            <form action="EditDetailsServlet" >
                            
+                            check Box: <input type="checkbox" name="diffPayeeAddrFlag" id="checkedBox" value="checked" onClick="makeDetailsEditable()"/> <br/>
+  
                             <!-- Setup a edit servlet to edit details-->
                             <!-- Use customer DAO to get personal info and place here-->
-                            <li>Age: <input type="text" name="age" value="<%out.print(c.getUser_age()); %>" readonly></li>
-                            <li>Name: <input type="text" name="name" value="<%out.print(c.getUser_first_name() + " " + c.getUser_last_name()); %>" readonly></li>
-                            <li>Address: <input type="text" name="address" value=<%out.print(c.getUser_address_1()); %> readonly></li>
-                            <li>Address 2: <input type="text" name="address2" value="<%out.print(c.getUser_address_2()); %>" readonly></li>
-                            <li>City: <input type="text" name="city" value="<%out.print(c.getUser_city()); %>" readonly></li>
-                            <li>
-                                
+                            
+                            <li>Age: <input type="text" name="age" id ="age" value="<%out.print(c.getUser_age()); %>" readonly></li>
+                            <li>Name: <input type="text" name="name" id ="name" value="<%out.print(c.getUser_first_name() + " " + c.getUser_last_name()); %>" readonly></li>
+                            <li>Email: <input type="text" name="email" id ="email" value="<%out.print(c.getUser_email()); %>" readonly></li>
+                            <li>Phone: <input type="text" name="phone" id ="phone" value="<%out.print(c.getUser_phone()); %>" readonly></li>
+                            <li>Address: <input type="text" name="address" id ="address" value="<%out.print(c.getUser_address_1()); %>" readonly></li>
+                            <li>Address 2: <input type="text" name="address2" id ="address2" value="<%out.print(c.getUser_address_2()); %>" readonly></li>
+                            <li>Postcode <input type="text" name="postcode" id="postcode" value="<%out.print(c.getUser_post_code()); %>" readonly></li>
+                            <li>Suburb: <input type="text" name="suburb" id="suburb" value="<%out.print(c.getUser_suburb()); %>" readonly></li>
+                            <li>City: <input type="text" name="city" id="city" value="<%out.print(c.getUser_city()); %>" readonly></li>
+                            
+                             
                                 <button class="button">Edit These Details</button>
                             </form>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
