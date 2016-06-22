@@ -46,6 +46,11 @@ public class EditDetailsServlet extends HttpServlet {
          String address2 = request.getParameter("address2");
          String city = request.getParameter("city");
          String email = request.getParameter("email");
+         int postCode = Integer.parseInt(request.getParameter("postcode"));
+         String suburb = request.getParameter("suburb");
+         int phone = Integer.valueOf(request.getParameter("phone"));
+         
+                 
 
          CustomerObj c = new CustomerObj();
         
@@ -81,6 +86,11 @@ public class EditDetailsServlet extends HttpServlet {
          }
          
          c.setUser_address_1(address, email);
+         c.setUser_address_2(address2, email);
+         c.setUser_city(city, email);
+         c.setUser_post_code(postCode, email);
+         c.setUser_suburb(suburb, email);
+         c.setUser_phone(phone, email);
       }
       
       //get the cookie to find the sql data 
@@ -95,7 +105,8 @@ public class EditDetailsServlet extends HttpServlet {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        response.sendRedirect("http://localhost:9999/dashboard.jsp");
+        //System.out.println("XXXXXXin here ");
+        //response.sendRedirect("http://localhost:9999/dashboard.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -543,13 +543,73 @@ public class CustomerObj {
         return user_confirm_password;
     }
 
-    public void setUser_first_name(String user_first_name) {
+    public void setUser_first_name(String user_first_name, String email) throws ClassNotFoundException {
         
         this.user_first_name = user_first_name;
+        
+        //String sql = "UPDATE Employees set age=? WHERE id=?";
+        String sql = "UPDATE customertable set customerFirstName=? WHERE customerEmail=?";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setString(1, user_first_name);
+             stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer " + user_first_name + " in set user address");
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set user");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public void setUser_last_name(String user_last_name) {
+    public void setUser_last_name(String user_last_name, String email) throws ClassNotFoundException {
         this.user_last_name = user_last_name;
+        
+         //String sql = "UPDATE Employees set age=? WHERE id=?";
+        String sql = "UPDATE customertable set customerLastName=? WHERE customerEmail=?";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setString(1, user_last_name);
+             stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer " + user_last_name + " in set user address");
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set user");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setUser_age(String user_age) {
@@ -598,7 +658,7 @@ public class CustomerObj {
     public void setUser_address_2(String user_address_2, String email) throws ClassNotFoundException {
         this.user_address_2 = user_address_2;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerStAdd2=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -608,7 +668,7 @@ public class CustomerObj {
 
           
           
-             stmt.setString(1, user_address_1);
+             stmt.setString(1, user_address_2);
              stmt.setString(2, email);
              stmt.executeUpdate();
              
@@ -631,7 +691,7 @@ public class CustomerObj {
     public void setUser_suburb(String user_suburb, String email) throws ClassNotFoundException {
         this.user_suburb = user_suburb;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerSuburb=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -664,7 +724,7 @@ public class CustomerObj {
     public void setUser_city(String user_city, String email) throws ClassNotFoundException {
         this.user_city = user_city;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerCity=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -699,7 +759,7 @@ public class CustomerObj {
     public void setUser_post_code(int user_post_code, String email) throws ClassNotFoundException {
         this.user_post_code = user_post_code;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerPostCode=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -732,7 +792,7 @@ public class CustomerObj {
     public void setUser_phone(int user_phone, String email) throws ClassNotFoundException {
         this.user_phone = user_phone;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerPhone=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -765,7 +825,7 @@ public class CustomerObj {
     public void setUser_email(String user_email) throws ClassNotFoundException {
         this.user_email = user_email;
         
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+        String sql = "UPDATE customertable set customerEmail=? WHERE customerEmail=?";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -795,42 +855,43 @@ public class CustomerObj {
         }
     }
 
-    public void setUser_password(String user_password, String email) throws ClassNotFoundException {
-        this.user_password = user_password;
-        
-        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
-          //create the statement that you want to find from the string
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-            //had to add this to register driver for some reason. 
-            Class.forName("com.mysql.jdbc.Driver");
-
-          
-          
-             stmt.setString(1, user_password);
-             stmt.setString(2, email);
-             stmt.executeUpdate();
-             
-             System.out.println("found customer " + user_password + " in set user address");
-
-//            while (rs.next()) {
-//                user_address_1 = rs.getString("user_address_1");
-//                //print out to test if somthing is found
-//                System.out.println("found customer " + user_address_1 + "in set user address");
+    //blank these out at this stage as I need to work out how to change passwords and do the re-hashing etc.
+//    public void setUser_password(String user_password, String email) throws ClassNotFoundException {
+//        this.user_password = user_password;
+//        
+//        String sql = "UPDATE customertable set customerStAdd1=? WHERE customerEmail=?";
+//          //create the statement that you want to find from the string
+//        try (Connection con = DriverManager.getConnection(url, "root", "");
+//            PreparedStatement stmt = con.prepareStatement(sql);
+//               ){
+//            //had to add this to register driver for some reason. 
+//            Class.forName("com.mysql.jdbc.Driver");
 //
 //          
-//            }
-
-        } catch (SQLException ex) {
-            System.out.println("no customer found in set user");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void setUser_confirm_password(String user_confirm_password) {
-        this.user_confirm_password = user_confirm_password;
-    }
+//          
+//             stmt.setString(1, user_password);
+//             stmt.setString(2, email);
+//             stmt.executeUpdate();
+//             
+//             System.out.println("found customer " + user_password + " in set user address");
+//
+////            while (rs.next()) {
+////                user_address_1 = rs.getString("user_address_1");
+////                //print out to test if somthing is found
+////                System.out.println("found customer " + user_address_1 + "in set user address");
+////
+////          
+////            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println("no customer found in set user");
+//            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//
+//    public void setUser_confirm_password(String user_confirm_password) {
+//        this.user_confirm_password = user_confirm_password;
+//    }
 
     
     

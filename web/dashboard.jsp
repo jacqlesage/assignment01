@@ -107,9 +107,9 @@
                     <div class="dash-inner-item">
                         <h3>Your Details</h3>
                         <ul>
-                            <form action="EditDetailsServlet" >
+                            <form action="EditDetailsServlet" method="post">
                            
-                            check Box: <input type="checkbox" name="diffPayeeAddrFlag" id="checkedBox" value="checked" onClick="makeDetailsEditable()"/> <br/>
+                            Click here to make details editable: <input type="checkbox" name="diffPayeeAddrFlag" id="checkedBox" value="checked" onClick="makeDetailsEditable()"/> <br/>
   
                             <!-- Setup a edit servlet to edit details-->
                             <!-- Use customer DAO to get personal info and place here-->
@@ -125,7 +125,7 @@
                             <li>City: <input type="text" name="city" id="city" value="<%out.print(c.getUser_city()); %>" readonly></li>
                             
                              
-                                <button class="button">Edit These Details</button>
+                                <button class="button" type="submit">Edit These Details</button>
                             </form>
                             
                         </ul>
