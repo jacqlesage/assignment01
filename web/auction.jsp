@@ -21,6 +21,9 @@
 
     <!-- Top Content Nav Buttons -->
  <%@include file = "auctionDashboardWebPageSegment.jspf"%>
+ <!--Script for loading heading description-->
+ <script src="js/loadProductDescription.js" type="text/javascript"></script>
+      
 
 
     <!-- Main Page Content -->
@@ -46,9 +49,15 @@
         <div class="auction-content-wrapper">
             <div class="row">
                 <div class="large-9 large-centered columns">
-                    <h2>iPhone 6s Plus - 128gb</h2>
+                    
+        
+                    
+                  <h2 id="auctionHeading"> </h2>
+                    
                     <img src="img/iphone.jpg">
-                    <p>
+                      
+                                        
+                    <p id="productSalesParagraph">
                         Brand new, in box, iPhone 6s Plus - 128gb. The latest and greatest in smart phone technology.
                         This phone could be your for just $1, assuming you have already <a href="index.jsp#signup">Signed Up</a> and are <a href="login.html">logged in</a>
                         use the bid button below to get started.

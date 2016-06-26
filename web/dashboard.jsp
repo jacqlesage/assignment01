@@ -29,8 +29,9 @@
 
     <!-- Top Content Nav Buttons -->
    <%@include file = "auctionDashboardWebPageSegment.jspf"%>
-      <script src="js/editDetails.js" type="text/javascript"></script>
-
+   
+   <!--<script src="js/editDetails.js" type="text/javascript"></script> -->
+      
 
     <div class="dash-inner">
         <h1>DashBoard</h1>
