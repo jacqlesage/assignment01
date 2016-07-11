@@ -13,7 +13,7 @@ public class AuctionItem {
     private String auctionTitle;
     private String auctionPicture;
     private String auctionDescription;
-    //auction ID? connects via an admin HTML page? 
+    //auction ID auto generated? connects via an admin HTML page? 
     
             
 }
