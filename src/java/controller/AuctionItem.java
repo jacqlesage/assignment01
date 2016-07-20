@@ -14,6 +14,10 @@ public class AuctionItem {
     private String auctionPicture;
     private String auctionDescription;
     //auction ID auto generated? connects via an admin HTML page? 
+    private int auctionID; //autogenerate via database
+    private String url;
+    private String itemLocation;
+    private int auctionReservePrice;
     
             
 }
