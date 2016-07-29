@@ -58,14 +58,15 @@
                 <div class="large-9 large-centered columns">
                     
         
-                    
+                     
 <!--                  //<h2 id="auctionHeading"> </h2>-->
-                    <h2><%  out.print(AuctionItemObj.getAuctionTitle()); %> </h2>
-                    <!--//call the set methods for the table in here also.-->
-                    <img src="img/iphone.jpg">
+                    <!-- get the title description from the database -->
+                    <h2><%  out.print(a.getAuctionTitle()); %> </h2>
+                    <!--//Get the picture file location.-->
+                    <img src="<%out.print(a.getAuctionPicture());%>">
                       
-<!--                                       -->
-                    <p> <% out.print(a.getAuctionTitle()); %> 
+                     <!--get auction description paragraph-->
+                    <p> <%  out.print(a.getAuctionDescription());%> 
 <!--                        Brand new, in box, iPhone 6s Plus - 128gb. The latest and greatest in smart phone technology.
                         This phone could be your for just $1, assuming you have already <a href="index.jsp#signup">Signed Up</a> and are <a href="login.html">logged in</a>
                         use the bid button below to get started.-->
