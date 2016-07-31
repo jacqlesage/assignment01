@@ -31,6 +31,9 @@
    <%@include file = "auctionDashboardWebPageSegment.jspf"%>
    
    <!--<script src="js/editDetails.js" type="text/javascript"></script> -->
+   
+   <!--Script for loading heading description-->
+ <script src="js/loadProductDescription.js" type="text/javascript"></script>
       
 
     <div class="dash-inner">
@@ -96,8 +99,9 @@
                         <h3>Current Auction Details</h3>
                         <i class="fi-check"></i>
                         <ul>
-                            <li>Bid on current auction: Yes</li>
-                            <li>Bid Percentage: 18%</li>
+                            <li id="auctionHeading"> </li>
+                            <li>Bid on current auction: Yes get picture across?</li>
+                            <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
                             <li><button class="button">Bid on this auction</button></li>
                             <li><button class="button">Go to auction page</button></li>
                         </ul>

@@ -6,4 +6,5 @@
 
 $(function(){
     $( "#auctionHeading" ).load( "auctionedProduct/productDescription.txt" );
+    $( "#productSalesParagraph" ).load( "auctionedProduct/productSalesParagraph.txt" );
 });

@@ -2,6 +2,7 @@
 <%@page import="controller.CustomerDAO"%>
 <%@ page pageEncoding="UTF-8" %>
     <!-- Top Content Nav Buttons -->
+    <script type = "text/javascript" src = "js/editDetails.js" ></script>
     <div class="header-subnav">
         <div class="row collapse">
             <div clas="small-12 columns">
