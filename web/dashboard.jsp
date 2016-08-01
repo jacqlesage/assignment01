@@ -99,11 +99,13 @@
                         <h3>Current Auction Details</h3>
                         <i class="fi-check"></i>
                         <ul>
+                            <form action="handleAuctionServlet" method="post">
                             <li id="auctionHeading"> </li>
                             <li>Bid on current auction: Yes get picture across?</li>
                             <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
-                            <li><button class="button">Bid on this auction</button></li>
+                            <li><button class="button" type="submit">Bid on this auction</button></li>
                             <li><button class="button">Go to auction page</button></li>
+                            </form>
                         </ul>
 
                     </div>

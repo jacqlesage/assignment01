@@ -61,6 +61,12 @@ public class CustomerObj {
             String user_password, String user_confirm_password) {
 
     }
+    
+    public CustomerObj(String user_first_name, String user_last_name, int user_age,
+            String user_address_1, String user_address_2, String user_suburb, String user_city, int user_post_code, int user_phone, String user_email) {
+
+    }
+    
      public CustomerObj() {
 
     }
