@@ -36,11 +36,7 @@ public class LogInServlet extends HttpServlet {
         System.out.println(emailAddress);
 
         //check database for email address
-        //
-        
-             
-        
-        //CustomerDAO cda = 
+     
         try {
 
             CustomerObj cus  = new CustomerDAO().findCustomer(emailAddress, password);
@@ -52,9 +48,10 @@ public class LogInServlet extends HttpServlet {
                 cusSessionCookie.setMaxAge(-1);
                 response.addCookie(cusSessionCookie);
                 response.sendRedirect("http://localhost:9999/index.jsp");
-                
+                //place a new object into the session which holds a few more details.
+                CustomerObj c = new CustomerObj(cus.getUser_first_name(), cus.getUser_last_name(), emailAddress);
                                
-                s.setAttribute("customer", cus);
+                s.setAttribute("customer", c);
                 
                        
                 
