@@ -5,11 +5,17 @@
  */
 package controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,12 +35,49 @@ public class HandleAuction {
     private String bidder_Fname;
     private String bidder_Lname;
     private String bidder_email;
+    
+    String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
     public String getBidder_Fname() {
         return bidder_Fname;
     }
 
-    public void setBidder_Fname(String bidder_Fname) {
+    public void setBidder_Fname(String bidder_Fname) throws ClassNotFoundException {
+        
+        this.bidder_Fname = bidder_Fname;
+        
+        //String sql = "UPDATE Employees set age=? WHERE id=?";
+        String sql = "Insert into handleauctiontable (ha_bidder_Fname, ha_bidder_Lname, ha_bidder_email)" +
+                "Select customerFirstName, customerLastName, customerEmail" +
+                "Where customerEmail = ?" ;
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setString(1, user_first_name);
+             stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer " + user_first_name + " in set user address");
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set user");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
         this.bidder_Fname = bidder_Fname;
     }
 
