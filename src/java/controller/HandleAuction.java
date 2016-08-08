@@ -31,25 +31,34 @@ public class HandleAuction {
     private Map customersWhoHaveBid; //should be able to add their bids under their customer ID here this way : Hashmap
     private List biddingHistory; //linked list as I am not sure of the size needed : Could use Array list here too ?
     private Calendar calendar; //get timeStamp
-    private Double totalBids;
+    private Integer totalBids;
     private String bidder_Fname;
     private String bidder_Lname;
     private String bidder_email;
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
+    public HandleAuction(Integer totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
+        this.totalBids = totalBids;
+        this.bidder_Fname = bidder_Fname;
+        this.bidder_Lname = bidder_Lname;
+        this.bidder_email = bidder_email;
+    }
+
+    
+
     public String getBidder_Fname() {
         return bidder_Fname;
     }
 
     public void setBidder_Fname(String bidder_Fname) throws ClassNotFoundException {
-        
+       
         this.bidder_Fname = bidder_Fname;
-        
-        //String sql = "UPDATE Employees set age=? WHERE id=?";
-        String sql = "Insert into handleauctiontable (ha_bidder_Fname, ha_bidder_Lname, ha_bidder_email)" +
-                "Select customerFirstName, customerLastName, customerEmail" +
-                "Where customerEmail = ?" ;
+   
+               
+        String sql = "Insert into handleauctiontable (ha_bidder_Fname)" +
+                "Select customerFirstName" +
+                "Where customerEmail = bidder_email" ;
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -59,11 +68,11 @@ public class HandleAuction {
 
           
           
-             stmt.setString(1, user_first_name);
-             stmt.setString(2, email);
+//             stmt.setString(1, user_first_name);
+//             stmt.setString(2, email);
              stmt.executeUpdate();
              
-             System.out.println("found customer " + user_first_name + " in set user address");
+             System.out.println("found customer in handle auction servlet" + " " + bidder_Fname);
 
 //            while (rs.next()) {
 //                user_address_1 = rs.getString("user_address_1");
@@ -78,7 +87,7 @@ public class HandleAuction {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
-        this.bidder_Fname = bidder_Fname;
+       
     }
 
     public String getBidder_Lname() {
@@ -93,8 +102,41 @@ public class HandleAuction {
         return bidder_email;
     }
 
-    public void setBidder_email(String bidder_email) {
+    public void setBidder_email(String bidder_email) throws ClassNotFoundException {
+               
         this.bidder_email = bidder_email;
+    
+  
+        String sql = "Insert into handleauctiontable (ha_bidder_email)=?" +
+                "Where customerEmail = bidder_email" ;
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setString(1,bidder_email);
+             //stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer in handle auction servlet" + " " + bidder_email);
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set user");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }
 
     public HandleAuction(int aucitonID, AuctionItemObj aItem, double auctionReserve, boolean finalBid, Calendar calendar, Double totalBids) {
