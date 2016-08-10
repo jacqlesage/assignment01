@@ -11,6 +11,7 @@ package controller;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import javax.servlet.http.HttpServletRequest;
 import dbconnection.Dbconnect;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.logging.Level;
@@ -34,7 +35,7 @@ public class CustomerDAO {
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
     
-    public CustomerObj findCustomer(String email, String password) throws ClassNotFoundException{
+    public CustomerObj findCustomer(String email, String password) throws ClassNotFoundException, IOException{
         
         CustomerObj cus = new CustomerObj();
         

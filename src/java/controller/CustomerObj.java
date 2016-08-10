@@ -66,6 +66,13 @@ public class CustomerObj {
             String user_address_1, String user_address_2, String user_suburb, String user_city, int user_post_code, int user_phone, String user_email) {
 
     }
+    //to deal with the handle auction table info needed
+    public CustomerObj(String user_first_name, String user_last_name, String user_email) {
+        
+        this.user_first_name = user_first_name;
+        this.user_last_name = user_last_name;
+        this.user_email = user_email;
+    }
     
      public CustomerObj() {
 

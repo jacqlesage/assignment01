@@ -107,8 +107,8 @@ public class HandleAuction {
         this.bidder_email = bidder_email;
     
   
-        String sql = "Insert into handleauctiontable (ha_bidder_email)=?" +
-                "Where customerEmail = bidder_email" ;
+        String sql = "Insert into handleauctiontable (ha_bidder_email)" +
+                " Values (?)";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class HandleAuction {
                 
     }
 
-    public HandleAuction(int aucitonID, AuctionItemObj aItem, double auctionReserve, boolean finalBid, Calendar calendar, Double totalBids) {
+    public HandleAuction(int aucitonID, AuctionItemObj aItem, double auctionReserve, boolean finalBid, Calendar calendar, Integer totalBids) {
         this.aucitonID = aucitonID;
         this.aItem = aItem;
         this.auctionReserve = auctionReserve;
@@ -153,7 +153,7 @@ public class HandleAuction {
         
     }
 
-    public HandleAuction(int aucitonID, double auctionReserve, boolean finalBid, boolean isActive, Calendar calendar, Double totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
+    public HandleAuction(int aucitonID, double auctionReserve, boolean finalBid, boolean isActive, Calendar calendar, Integer totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
         this.aucitonID = aucitonID;
         this.auctionReserve = auctionReserve;
         this.finalBid = finalBid;
@@ -232,12 +232,12 @@ public class HandleAuction {
         this.calendar = calendar;
     }
 
-    public Double getTotalBids() {
+    public Integer getTotalBids() {
         return totalBids;
     }
 
     public void setTotalBids(Double totalBids) {
-        this.totalBids = totalBids;
+        //this.totalBids = totalBids;
     }
     
     public CustomerObj getCustomer(CustomerObj o){
