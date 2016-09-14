@@ -26,7 +26,7 @@ import javax.servlet.http.Cookie;
  * @author James
  */
 public class CustomerObj {
-
+    int user_customer_number;
     String user_first_name;
     String user_last_name;
     String user_age; //should be int
@@ -80,6 +80,52 @@ public class CustomerObj {
      
       public CustomerObj(String emailAddress) {
           this.user_email = emailAddress;
+    }
+
+    public void setUser_customer_number(int user_customer_number) {
+        this.user_customer_number = user_customer_number;
+    }
+
+    public int getUser_customer_number() throws ClassNotFoundException {
+        
+         String email = CustomerObj.this.user_email;
+        int  user_customer_number = 0;
+        
+        //System.out.println(email + " *****************   ** * *email in user first name");
+        
+        String sql = "select customerNumber from customertable where customerEmail = ?";
+
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+              ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //connect to DB
+            //Connection con = DriverManager.getConnection(url, "root", "");
+
+            //create the statement that you want to find from the string
+            //PreparedStatement stmt = con.prepareStatement(sql);
+
+                 stmt.setString(1, email);
+            //stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                user_customer_number = rs.getInt("customerNumber");
+                //print out to test if somthing is found
+                System.out.println("found customer number = " + user_customer_number);
+
+          
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        return user_customer_number;
     }
     
 

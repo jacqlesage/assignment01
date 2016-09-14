@@ -59,8 +59,9 @@ public class handleAuctionServlet extends HttpServlet {
             //request.getSession().removeAttribute(myObjectId);
             out.println("<h1>attribs " + myObject.toString() + "</h1>");
             HandleAuction h = new HandleAuction(bidAmount, myObject.getUser_first_name(), myObject.getUser_last_name(), myObject.getUser_email());
+           out.println("<h1>number " + myObject.getUser_customer_number() + "</h1>");
             //System.out.println(myObject.toString());
-
+            out.println("<h1>handle " + h.toString() + "</h1>");
             HttpSession session = request.getSession();
 
             if (session != null) {
@@ -76,8 +77,9 @@ public class handleAuctionServlet extends HttpServlet {
                 //key = (String)keys.nextElement();
                 out.println(key + ": " + key + "<br>");
             }
-
-            h.setBidder_email(myObject.getUser_email());
+            
+            h.setCustomer_table_ID(myObject.getUser_customer_number());
+            //h.setBidder_email(myObject.getUser_email());
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);

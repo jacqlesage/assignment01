@@ -35,8 +35,15 @@ public class HandleAuction {
     private String bidder_Fname;
     private String bidder_Lname;
     private String bidder_email;
+    private int customer_table_ID; //from the customers table (the customers ID on the customers table)
+    private int auctionItem_ID; //get this from the auctionItemTable
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
+
+    @Override
+    public String toString() {
+        return "HandleAuction{" + "aucitonID=" + aucitonID + ", aItem=" + aItem + ", auctionReserve=" + auctionReserve + ", finalBid=" + finalBid + ", isActive=" + isActive + ", customersWhoHaveBid=" + customersWhoHaveBid + ", biddingHistory=" + biddingHistory + ", calendar=" + calendar + ", totalBids=" + totalBids + ", bidder_Fname=" + bidder_Fname + ", bidder_Lname=" + bidder_Lname + ", bidder_email=" + bidder_email + ", url=" + url + '}';
+    }
 
     public HandleAuction(Integer totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
         this.totalBids = totalBids;
@@ -49,6 +56,50 @@ public class HandleAuction {
 
     public String getBidder_Fname() {
         return bidder_Fname;
+    }
+
+    public void setAuctionItem_ID(int auctionItem_ID) {
+        this.auctionItem_ID = auctionItem_ID;
+        
+       // need to get this to be the same as the auction that is loaded in the auctionItem table. 
+       //somehow I need to get this into the handleAuction servlet so I can populate the table all at once.
+    }
+
+    public void setCustomer_table_ID(int customer_table_ID) throws ClassNotFoundException {
+        this.customer_table_ID = customer_table_ID;
+        
+         String sql = "Insert into handleauctiontable (customerTable_ID)" +
+                "values (?)";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            Class.forName("com.mysql.jdbc.Driver");
+
+          
+          
+             stmt.setInt(1, customer_table_ID);
+//             stmt.setString(2, email);
+             stmt.executeUpdate();
+             
+             System.out.println("found customer in handle auction servlet" + " " + customer_table_ID);
+
+//            while (rs.next()) {
+//                user_address_1 = rs.getString("user_address_1");
+//                //print out to test if somthing is found
+//                System.out.println("found customer " + user_address_1 + "in set user address");
+//
+//          
+//            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in set customer Table id");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+        
+        
     }
 
     public void setBidder_Fname(String bidder_Fname) throws ClassNotFoundException {
@@ -106,10 +157,13 @@ public class HandleAuction {
                
         this.bidder_email = bidder_email;
     
-  
-        String sql = "Insert into handleauctiontable (ha_bidder_email)" +
-                " Values (?)";
+        //because I am looking to take the primary key value into the FK value 
+        //I need to join tables first - this should fix my error
+        String sql = "INSERT INTO handleauctiontable (auctionItem_ID) " +
+                      "SELECT auctionId FROM auctionitemtable";
+                //"Insert into handleauctiontable (ha_bidder_email)" + " Values (?)";
           //create the statement that you want to find from the string
+          System.out.println("found customer in handle auction servlet" + " " + bidder_email);
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
                ){
@@ -118,7 +172,7 @@ public class HandleAuction {
 
           
           
-             stmt.setString(1,bidder_email);
+             //stmt.setString(1,bidder_email);
              //stmt.setString(2, email);
              stmt.executeUpdate();
              
