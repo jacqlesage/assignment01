@@ -45,6 +45,17 @@ public class AuctionItemObj {
         
     }
 
+    //correct constructer - with no reserve price going in ...??
+    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, boolean auctionActive) {
+        this.auctionTitle = auctionTitle;
+        this.auctionPicture = auctionPicture;
+        this.auctionDescription = auctionDescription;
+        this.auctionID = auctionID;
+        this.specsURL = specsURL;
+        this.itemLocation = itemLocation;
+        this.auctionActive = auctionActive;
+    }
+
     /**
      *
      * @return
@@ -186,6 +197,53 @@ public class AuctionItemObj {
         this.auctionReservePrice = auctionReservePrice;
     }
     
+    public AuctionItemObj getAuctionItemObject() throws ClassNotFoundException{
+        //need to create a object to get all of the information about the auction Object
+        //use the getters and setters for the object from there.
+        int aucID = 0;
+        String aucTitle = null;
+        String aucDescription = null;
+        String aucPicture = null;
+        String aucSpecURL = null;
+        String aucItemLocation = null;
+        String aucReserve;
+        boolean aucActive = false; 
+        
+                
+        Class.forName("com.mysql.jdbc.Driver");        
+        //only should be one auction active at a time...
+        String sql = "SELECT * FROM auctionitemTable WHERE auctionActive = true";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+            //had to add this to register driver for some reason. 
+            //Class.forName("com.mysql.jdbc.Driver");
+
+           ResultSet rs =  stmt.executeQuery();
+          
+              while (rs.next()) {
+               aucID =  rs.getInt("auctionID");
+               aucTitle = rs.getString("auctionTitle");
+               aucDescription = rs.getString("auctionDescription");
+               aucPicture = rs.getString("auctionPicture");
+               aucSpecURL = rs.getString("auctionSpecURL");
+               aucItemLocation = rs.getString("auctionItemLocation");
+               aucActive = rs.getBoolean("auctionActive");
+               
+
+               }
+             
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        AuctionItemObj ao = new AuctionItemObj(aucPicture,aucTitle,aucDescription,aucID,aucSpecURL,aucItemLocation,aucActive);
+          
+        return ao;
+    }
     
             
 }

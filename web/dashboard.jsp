@@ -7,6 +7,7 @@
 <%@page import="viewWeb.EditDetailsServlet"%>
 <%@page import="controller.CustomerObj"%>
 <%@page import="controller.AccountDAO"%>
+<%@page import="controller.AuctionItemObj"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file = "headerWebPageSegment.jspf" %>
 
@@ -34,8 +35,15 @@
    
    <!--Script for loading heading description-->
  <script src="js/loadProductDescription.js" type="text/javascript"></script>
- 
+  
+ <% AuctionItemObj ao = new AuctionItemObj();
+    
+    if(CustomerDAO.customerFound){ 
+   ao = a.getAuctionItemObject();
+}
 
+%>
+    
     <div class="dash-inner">
         <h1>DashBoard</h1>
         <div class="dash-inner-top-bar">
@@ -100,8 +108,9 @@
                         <i class="fi-check"></i>
                         <ul>
                             <form action="handleAuctionServlet" method="post">
-                            <li id="auctionHeading"> </li>
-                            <li>Bid amount. (In whole dollars only) <input type="number" name="bidAmount" id ="bidAmount" max="10"></li>
+                                <!-- no need for id="auctionHeading" any more - auction set from admin page -->
+                                <li id="auctionNumber" name="auctionNumber"> <p> Auction number: <% out.print(" " + ao.getAuctionID()); %></p> </li>
+                            <li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id ="bidAmount" max="10"></li>
                             <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
                             
                             <li><button class="button" type="submit">Bid on this auction</button></li>
