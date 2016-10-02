@@ -58,10 +58,10 @@ public class handleAuctionServlet extends HttpServlet {
             CustomerObj myObject = (CustomerObj) request.getSession().getAttribute("customer");
             //request.getSession().removeAttribute(myObjectId);
             out.println("<h1>attribs " + myObject.toString() + "</h1>");
-            HandleAuction h = new HandleAuction(bidAmount, myObject.getUser_first_name(), myObject.getUser_last_name(), myObject.getUser_email());
+            //HandleAuction h = new HandleAuction(bidAmount, myObject.getUser_first_name(), myObject.getUser_last_name(), myObject.getUser_email());
            out.println("<h1>number " + myObject.getUser_customer_number() + "</h1>");
             //System.out.println(myObject.toString());
-            out.println("<h1>handle " + h.toString() + "</h1>");
+            //out.println("<h1>handle " + h.toString() + "</h1>");
             HttpSession session = request.getSession();
 
             if (session != null) {
@@ -78,7 +78,7 @@ public class handleAuctionServlet extends HttpServlet {
                 out.println(key + ": " + key + "<br>");
             }
             
-            h.setCustomer_table_ID(myObject.getUser_customer_number());
+            //h.setCustomer_table_ID(myObject.getUser_customer_number());
             //h.setBidder_email(myObject.getUser_email());
 
         } catch (ClassNotFoundException ex) {

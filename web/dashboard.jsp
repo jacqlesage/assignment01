@@ -109,10 +109,12 @@
                         <ul>
                             <form action="handleAuctionServlet" method="post">
                                 <!-- no need for id="auctionHeading" any more - auction set from admin page -->
-                                <li id="auctionNumber" name="auctionNumber"> <p> Auction number: <% out.print(" " + ao.getAuctionID()); %></p> </li>
-                                <li id="auctionTitle" name="auctionTitle"> <p> What's on auction: <% out.print(" " + ao.getAuctionTitle()); %></p> </li>
-                                <li id="auctionDescription" name="auctionDescription"> <p> Details of the product: <% out.print(" " + ao.getAuctionDescription()); %></p> </li>
-                                <li id="auctionDescription" name="auctionDescription"> <p> If you win it where do you need to ship it from?: <% out.print(" " + ao.getItemLocation()); %></p> </li>
+                                <li id="auctionNumber" name="auctionNumber"> Auction number: <% out.print(" " + ao.getAuctionID()); %></li>
+                                <li id="auctionTitle" name="auctionTitle">  What's on auction: <% out.print(" " + ao.getAuctionTitle()); %></li>
+                                <li id="auctionDescription" name="auctionDescription"> Details of the product: <% out.print(" " + ao.getAuctionDescription()); %> </li>
+                                <li id="auctionItemLocation" name="auctionItemLocation"> If you win it where do you need to ship it from?: <% out.print(" " + ao.getItemLocation()); %> </li>
+                                <li id="auctionSpecInformation" name="auctionSpecInformation"> Here would be a link to the specs of the item: <% out.print(" " + ao.getspecsUrl()); %> </li>
+                                <li id="auctionPicThumbnail" name="auctionPicThumbnail"> Here would insert the picture of the item <% out.print(" " + ao.getAuctionPicture()); %> </li>
                             <li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id ="bidAmount" max="10"></li>
                             <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
                             

@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,15 +24,16 @@ import java.util.logging.Logger;
  */
 public class HandleAuction {
     
-    private int aucitonID;
+    private int handleAucitonID;
     private AuctionItemObj aItem; //probably need to add an AuctionItemObj class which will contain details.
     private double auctionReserve;
     private boolean finalBid;
     private boolean isActive;
     private Map customersWhoHaveBid; //should be able to add their bids under their customer ID here this way : Hashmap
     private List biddingHistory; //linked list as I am not sure of the size needed : Could use Array list here too ?
-    private Calendar calendar; //get timeStamp
-    private Integer totalBids;
+    private Date timeStamp; //get date/timeStamp
+    private Integer bidAmount;
+    private Integer totalBidsOnThisAuction; // for one customer
     private String bidder_Fname;
     private String bidder_Lname;
     private String bidder_email;
@@ -40,263 +42,64 @@ public class HandleAuction {
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
-    @Override
-    public String toString() {
-        return "HandleAuction{" + "aucitonID=" + aucitonID + ", aItem=" + aItem + ", auctionReserve=" + auctionReserve + ", finalBid=" + finalBid + ", isActive=" + isActive + ", customersWhoHaveBid=" + customersWhoHaveBid + ", biddingHistory=" + biddingHistory + ", calendar=" + calendar + ", totalBids=" + totalBids + ", bidder_Fname=" + bidder_Fname + ", bidder_Lname=" + bidder_Lname + ", bidder_email=" + bidder_email + ", url=" + url + '}';
-    }
-
-    public HandleAuction(Integer totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
-        this.totalBids = totalBids;
+    public HandleAuction(Date timeStamp, Integer bidAmount, Integer totalBidsOnThisAuction, String bidder_Fname, String bidder_Lname, String bidder_email, int customer_table_ID, int auctionItem_ID) {
+        this.timeStamp = timeStamp;
+        this.bidAmount = bidAmount;
+        this.totalBidsOnThisAuction = totalBidsOnThisAuction;
         this.bidder_Fname = bidder_Fname;
         this.bidder_Lname = bidder_Lname;
         this.bidder_email = bidder_email;
-    }
-
-    
-
-    public String getBidder_Fname() {
-        return bidder_Fname;
-    }
-
-    public void setAuctionItem_ID(int auctionItem_ID) {
-        this.auctionItem_ID = auctionItem_ID;
-        
-       // need to get this to be the same as the auction that is loaded in the auctionItem table. 
-       //somehow I need to get this into the handleAuction servlet so I can populate the table all at once.
-    }
-
-    public void setCustomer_table_ID(int customer_table_ID) throws ClassNotFoundException {
         this.customer_table_ID = customer_table_ID;
-        
-         String sql = "Insert into handleauctiontable (customerTable_ID)" +
-                "values (?)";
-          //create the statement that you want to find from the string
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-            //had to add this to register driver for some reason. 
-            Class.forName("com.mysql.jdbc.Driver");
-
-          
-          
-             stmt.setInt(1, customer_table_ID);
-//             stmt.setString(2, email);
-             stmt.executeUpdate();
-             
-             System.out.println("found customer in handle auction servlet" + " " + customer_table_ID);
-
-//            while (rs.next()) {
-//                user_address_1 = rs.getString("user_address_1");
-//                //print out to test if somthing is found
-//                System.out.println("found customer " + user_address_1 + "in set user address");
-//
-//          
-//            }
-
-        } catch (SQLException ex) {
-            System.out.println("no customer found in set customer Table id");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-        
-        
+        this.auctionItem_ID = auctionItem_ID;
     }
 
-    public void setBidder_Fname(String bidder_Fname) throws ClassNotFoundException {
-       
-        this.bidder_Fname = bidder_Fname;
-   
-               
-        String sql = "Insert into handleauctiontable (ha_bidder_Fname)" +
-                "Select customerFirstName" +
-                "Where customerEmail = bidder_email" ;
-          //create the statement that you want to find from the string
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-            //had to add this to register driver for some reason. 
-            Class.forName("com.mysql.jdbc.Driver");
-
-          
-          
-//             stmt.setString(1, user_first_name);
-//             stmt.setString(2, email);
-             stmt.executeUpdate();
-             
-             System.out.println("found customer in handle auction servlet" + " " + bidder_Fname);
-
-//            while (rs.next()) {
-//                user_address_1 = rs.getString("user_address_1");
-//                //print out to test if somthing is found
-//                System.out.println("found customer " + user_address_1 + "in set user address");
-//
-//          
-//            }
-
-        } catch (SQLException ex) {
-            System.out.println("no customer found in set user");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-       
-    }
-
-    public String getBidder_Lname() {
-        return bidder_Lname;
-    }
-
-    public void setBidder_Lname(String bidder_Lname) {
-        this.bidder_Lname = bidder_Lname;
-    }
-
-    public String getBidder_email() {
-        return bidder_email;
-    }
-
-    public void setBidder_email(String bidder_email) throws ClassNotFoundException {
-               
-        this.bidder_email = bidder_email;
-    
-        //because I am looking to take the primary key value into the FK value 
-        //I need to join tables first - this should fix my error
-        String sql = "INSERT INTO handleauctiontable (auctionItem_ID) " +
-                      "SELECT auctionId FROM auctionitemtable";
-                //"Insert into handleauctiontable (ha_bidder_email)" + " Values (?)";
-          //create the statement that you want to find from the string
-          System.out.println("found customer in handle auction servlet" + " " + bidder_email);
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-            //had to add this to register driver for some reason. 
-            Class.forName("com.mysql.jdbc.Driver");
-
-          
-          
-             //stmt.setString(1,bidder_email);
-             //stmt.setString(2, email);
-             stmt.executeUpdate();
-             
-             System.out.println("found customer in handle auction servlet" + " " + bidder_email);
-
-//            while (rs.next()) {
-//                user_address_1 = rs.getString("user_address_1");
-//                //print out to test if somthing is found
-//                System.out.println("found customer " + user_address_1 + "in set user address");
-//
-//          
-//            }
-
-        } catch (SQLException ex) {
-            System.out.println("no customer found in set user");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-    }
-
-    public HandleAuction(int aucitonID, AuctionItemObj aItem, double auctionReserve, boolean finalBid, Calendar calendar, Integer totalBids) {
-        this.aucitonID = aucitonID;
-        this.aItem = aItem;
-        this.auctionReserve = auctionReserve;
-        this.finalBid = finalBid;
-        this.calendar = calendar;
-        this.totalBids = totalBids;
-        
-        customersWhoHaveBid = new HashMap();
-        biddingHistory = new LinkedList();
-        isActive = true;
-        
-    }
-
-    public HandleAuction(int aucitonID, double auctionReserve, boolean finalBid, boolean isActive, Calendar calendar, Integer totalBids, String bidder_Fname, String bidder_Lname, String bidder_email) {
-        this.aucitonID = aucitonID;
-        this.auctionReserve = auctionReserve;
-        this.finalBid = finalBid;
-        this.isActive = isActive;
-        this.calendar = calendar;
-        this.totalBids = totalBids;
-        this.bidder_Fname = bidder_Fname;
-        this.bidder_Lname = bidder_Lname;
-        this.bidder_email = bidder_email;
-    }
-
-    public int getAucitonID() {
-        return aucitonID;
-    }
-
-    public void setAucitonID(int aucitonID) {
-        this.aucitonID = aucitonID;
+    public int getHandleAucitonID() {
+        return handleAucitonID;
     }
 
     public AuctionItemObj getaItem() {
         return aItem;
     }
 
-    public void setaItem(AuctionItemObj aItem) {
-        this.aItem = aItem;
-    }
-
-    public double getAuctionReserve() {
-        return auctionReserve;
-    }
-
-    public void setAuctionReserve(double auctionReserve) {
-        
-        
-        
-        this.auctionReserve = auctionReserve;
-    }
-
-    public boolean isFinalBid() {
-        return finalBid;
-    }
-
-    public void setFinalBid(boolean finalBid) {
-        this.finalBid = finalBid;
-    }
-
-    public boolean isIsActive() {
+     public boolean isIsActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    public Date getTimeStamp() {
+        return timeStamp;
     }
 
-    public Map getCustomersWhoHaveBid() {
-        return customersWhoHaveBid;
+    public Integer getBidAmount() {
+        return bidAmount;
     }
 
-    public void setCustomersWhoHaveBid(Map customersWhoHaveBid) {
-        this.customersWhoHaveBid = customersWhoHaveBid;
+    public String getBidder_Fname() {
+        return bidder_Fname;
     }
 
-    public List getBiddingHistory() {
-        return biddingHistory;
+    public String getBidder_Lname() {
+        return bidder_Lname;
     }
 
-    public void setBiddingHistory(List biddingHistory) {
-        this.biddingHistory = biddingHistory;
+    public String getBidder_email() {
+        return bidder_email;
     }
 
-    public Calendar getCalendar() {
-        return calendar;
+    public int getCustomer_table_ID() {
+        return customer_table_ID;
     }
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
+    public int getAuctionItem_ID() {
+        return auctionItem_ID;
     }
 
-    public Integer getTotalBids() {
-        return totalBids;
-    }
-
-    public void setTotalBids(Double totalBids) {
-        //this.totalBids = totalBids;
+    
+    //here is where we can process the inserting of the handle auction table 
+    public HandleAuction getHAuctionObj(HandleAuction obj){
+        
+        return obj;
     }
     
-    public CustomerObj getCustomer(CustomerObj o){
-        
-        return o;
-    }
+
     
 }

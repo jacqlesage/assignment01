@@ -952,7 +952,10 @@ public class CustomerObj {
 //        this.user_confirm_password = user_confirm_password;
 //    }
 
-    
+        public CustomerObj getCustomer(CustomerObj o){
+        
+        return o;
+    }
     
      @Override
     public String toString() {
