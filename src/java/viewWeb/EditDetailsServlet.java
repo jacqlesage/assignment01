@@ -84,13 +84,13 @@ public class EditDetailsServlet extends HttpServlet {
             out.print("Name : " + cookie.getName( ) + ",  ");
             out.print("Value: " + cookie.getValue( )+" <br/>");
          }
-         
-         c.setUser_address_1(address, email);
-         c.setUser_address_2(address2, email);
-         c.setUser_city(city, email);
-         c.setUser_post_code(postCode, email);
-         c.setUser_suburb(suburb, email);
-         c.setUser_phone(phone, email);
+         //need to fix 
+//         c.setUser_address_1(address, email);
+//         c.setUser_address_2(address2, email);
+//         c.setUser_city(city, email);
+//         c.setUser_post_code(postCode, email);
+//         c.setUser_suburb(suburb, email);
+//         c.setUser_phone(phone, email);
       }
       
       //get the cookie to find the sql data 

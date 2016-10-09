@@ -115,7 +115,7 @@
                                 <li id="auctionItemLocation" name="auctionItemLocation"> If you win it where do you need to ship it from?: <% out.print(" " + ao.getItemLocation()); %> </li>
                                 <li id="auctionSpecInformation" name="auctionSpecInformation"> Here would be a link to the specs of the item: <% out.print(" " + ao.getspecsUrl()); %> </li>
                                 <li id="auctionPicThumbnail" name="auctionPicThumbnail"> Here would insert the picture of the item <% out.print(" " + ao.getAuctionPicture()); %> </li>
-                            <li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id ="bidAmount" max="10"></li>
+                            <li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id="bidAmount" max="10"></li>
                             <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
                             
                             <li><button class="button" type="submit">Bid on this auction</button></li>
@@ -146,8 +146,8 @@
                             <li>Suburb: <input type="text" name="suburb" id="suburb" value="<%out.print(c.getUser_suburb()); %>" readonly></li>
                             <li>City: <input type="text" name="city" id="city" value="<%out.print(c.getUser_city()); %>" readonly></li>
                             
-                             <% CustomerObj cus = new CustomerObj(c.getUser_first_name(), c.getUser_last_name(), c.getUser_email()); %>
-                             <% request.setAttribute("customer", cus); %>
+                             <% //CustomerObj cus = new CustomerObj(c.getUser_first_name(), c.getUser_last_name(), c.getUser_email()); %>
+                             <% //request.setAttribute("customer", cus); %>
                              <% ServletContext sc = this.getServletContext(); %>
                              <% RequestDispatcher rd = sc.getRequestDispatcher("/handleAuctionServlet"); %>
                              

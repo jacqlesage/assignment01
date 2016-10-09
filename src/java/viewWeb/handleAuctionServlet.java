@@ -35,6 +35,7 @@ public class handleAuctionServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
@@ -60,6 +61,9 @@ public class handleAuctionServlet extends HttpServlet {
             out.println("<h1>attribs " + myObject.toString() + "</h1>");
             //HandleAuction h = new HandleAuction(bidAmount, myObject.getUser_first_name(), myObject.getUser_last_name(), myObject.getUser_email());
            out.println("<h1>number " + myObject.getUser_customer_number() + "</h1>");
+           
+           int bid = Integer.valueOf(request.getParameter("bidAmount"));
+           int auctionID = Integer.valueOf(request.getParameter("auctionNumber"));
             //System.out.println(myObject.toString());
             //out.println("<h1>handle " + h.toString() + "</h1>");
             HttpSession session = request.getSession();
@@ -78,14 +82,16 @@ public class handleAuctionServlet extends HttpServlet {
                 out.println(key + ": " + key + "<br>");
             }
             
+            //get the customer object details 
+            CustomerObj co = (CustomerObj) request.getSession().getAttribute("customer");
+            //put together a handleAuction object
+            HandleAuction ho = new HandleAuction(timeStamp, bid, bidAmount, co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
             //h.setCustomer_table_ID(myObject.getUser_customer_number());
             //h.setBidder_email(myObject.getUser_email());
+            
+        }    }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LogInServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

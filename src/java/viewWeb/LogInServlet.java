@@ -49,8 +49,9 @@ public class LogInServlet extends HttpServlet {
                 response.addCookie(cusSessionCookie);
                 response.sendRedirect("http://localhost:9999/index.jsp");
                 //place a new object into the session which holds a few more details.
-                CustomerObj c = new CustomerObj(cus.getUser_first_name(), cus.getUser_last_name(), emailAddress);
-                               
+                CustomerObj co = new CustomerObj(cus.getUser_first_name(), cus.getUser_last_name(), emailAddress);
+                CustomerObj c =  co.getCustomer(co);
+                System.out.println(c.toString());
                 s.setAttribute("customer", c);
                 
                        
