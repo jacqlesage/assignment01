@@ -9,6 +9,7 @@ import controller.CustomerObj;
 import controller.HandleAuction;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,11 +82,11 @@ public class handleAuctionServlet extends HttpServlet {
                 //key = (String)keys.nextElement();
                 out.println(key + ": " + key + "<br>");
             }
-            
+
             //get the customer object details 
             CustomerObj co = (CustomerObj) request.getSession().getAttribute("customer");
             //put together a handleAuction object
-            HandleAuction ho = new HandleAuction(timeStamp, bid, bidAmount, co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
+            HandleAuction ho = new HandleAuction(bid,co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
             //h.setCustomer_table_ID(myObject.getUser_customer_number());
             //h.setBidder_email(myObject.getUser_email());
             

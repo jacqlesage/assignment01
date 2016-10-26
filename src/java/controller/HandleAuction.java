@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,11 +43,10 @@ public class HandleAuction {
     private int auctionItem_ID; //get this from the auctionItemTable
     
     String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
-
-    public HandleAuction(Date timeStamp, Integer bidAmount, Integer totalBidsOnThisAuction, String bidder_Fname, String bidder_Lname, String bidder_email, int customer_table_ID, int auctionItem_ID) {
-        this.timeStamp = timeStamp;
+//timestamp can be added by sql on insert and the total bids can be derrived from bid + total bids so no need for them in constructor
+    public HandleAuction(Integer bidAmount,String bidder_Fname, String bidder_Lname, String bidder_email, int customer_table_ID, int auctionItem_ID) {
+       
         this.bidAmount = bidAmount;
-        this.totalBidsOnThisAuction = totalBidsOnThisAuction;
         this.bidder_Fname = bidder_Fname;
         this.bidder_Lname = bidder_Lname;
         this.bidder_email = bidder_email;
@@ -100,6 +101,47 @@ public class HandleAuction {
         return obj;
     }
     
+    public void setHAuctionObj(HandleAuction obj) throws ClassNotFoundException{
+        
+           //total bids needs to be derrived from all bids so far 
+        String sql = "INSERT INTO handleauctiontable(auctionItem_ID, customerTable_ID, ha_bidder_FName, ha_bidder_LName, ha_bidder_email, ha_totalCurrentBids,ha_isActive)"
+                + "values(?,?,?,?,?,?,?)";
+     
+   
+                               
+             try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+                 //change this code to meet new signup code. <- copied from above
+                 //had to add this to register driver for some reason. 
+                 Class.forName("com.mysql.jdbc.Driver");
+       
+                 //connect to DB
+//                 Connection con = DriverManager.getConnection(url, "root", "");
+                 System.out.println("inserting into handle auction");
+          
+                 //create the statement that you want to find from the string
+//               PreparedStatement stmt = con.prepareStatement(sql);
+               
+               //add into the handle auction - need to derrive total bids col and also check the is active boolean - what to do with that.
+                 stmt.setString(1, obj.getAuctionItem_ID());
+                 stmt.setString(2, obj.getCustomer_table_ID());
+                 stmt.setString(3, obj.getBidder_Fname());
+                 stmt.setString(4, obj.getBidder_Lname());
+                 stmt.setString(5, obj.getBidder_email());
+                 stmt.setString(6, obj.getBidAmount()); //this is going into a column which name I need to change to current bid 
+                 stmt.setString(7, obj.isIsActive());//making sure the auction is active might be able to derrive this also
+            
+  
+               stmt.executeUpdate();
+                
+                 
+             } catch (SQLException ex) {
+                 System.out.println("no customer found***");
+                 Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+    }
 
     
 }
