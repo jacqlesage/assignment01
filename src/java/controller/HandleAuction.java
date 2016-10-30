@@ -124,13 +124,13 @@ public class HandleAuction {
 //               PreparedStatement stmt = con.prepareStatement(sql);
                
                //add into the handle auction - need to derrive total bids col and also check the is active boolean - what to do with that.
-                 stmt.setString(1, obj.getAuctionItem_ID());
-                 stmt.setString(2, obj.getCustomer_table_ID());
+                 stmt.setInt(1, obj.getAuctionItem_ID());
+                 stmt.setInt(2, obj.getCustomer_table_ID());
                  stmt.setString(3, obj.getBidder_Fname());
                  stmt.setString(4, obj.getBidder_Lname());
                  stmt.setString(5, obj.getBidder_email());
-                 stmt.setString(6, obj.getBidAmount()); //this is going into a column which name I need to change to current bid 
-                 stmt.setString(7, obj.isIsActive());//making sure the auction is active might be able to derrive this also
+                 stmt.setInt(6, obj.getBidAmount()); //this is going into a column which name I need to change to current bid 
+                 stmt.setBoolean(7, obj.isIsActive());//making sure the auction is active might be able to derrive this also
             
   
                stmt.executeUpdate();
@@ -142,6 +142,12 @@ public class HandleAuction {
              }
         
     }
+    
+//    public boolean checkAuctionActive(int auctionID){
+//        
+//        
+//        
+//    }
 
     
 }

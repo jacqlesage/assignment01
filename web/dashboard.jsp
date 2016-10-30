@@ -109,7 +109,7 @@
                         <ul>
                             <form action="handleAuctionServlet" method="post">
                                 <!-- no need for id="auctionHeading" any more - auction set from admin page -->
-                                <li id="auctionNumber" name="auctionNumber"> Auction number: <% out.print(" " + ao.getAuctionID()); %></li>
+                                <li>Auction number: <input type="text" value="<% out.print(ao.getAuctionID()); %>" id="auctionNumber" name="auctionNumber" readonly></li>
                                 <li id="auctionTitle" name="auctionTitle">  What's on auction: <% out.print(" " + ao.getAuctionTitle()); %></li>
                                 <li id="auctionDescription" name="auctionDescription"> Details of the product: <% out.print(" " + ao.getAuctionDescription()); %> </li>
                                 <li id="auctionItemLocation" name="auctionItemLocation"> If you win it where do you need to ship it from?: <% out.print(" " + ao.getItemLocation()); %> </li>

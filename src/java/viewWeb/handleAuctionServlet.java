@@ -62,10 +62,13 @@ public class handleAuctionServlet extends HttpServlet {
             out.println("<h1>attribs " + myObject.toString() + "</h1>");
             //HandleAuction h = new HandleAuction(bidAmount, myObject.getUser_first_name(), myObject.getUser_last_name(), myObject.getUser_email());
            out.println("<h1>number " + myObject.getUser_customer_number() + "</h1>");
+           out.println("<h1>auction number " + request.getParameter("auctionNumber") + "</h1>");
+           out.println("<h1>bid amount " + bidAmount + "</h1>");
            
            int bid = Integer.valueOf(request.getParameter("bidAmount"));
            int auctionID = Integer.valueOf(request.getParameter("auctionNumber"));
-            //System.out.println(myObject.toString());
+           
+            //System.out.println("********* " + auctionID);
             //out.println("<h1>handle " + h.toString() + "</h1>");
             HttpSession session = request.getSession();
 
@@ -89,6 +92,7 @@ public class handleAuctionServlet extends HttpServlet {
             HandleAuction ho = new HandleAuction(bid,co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
             //h.setCustomer_table_ID(myObject.getUser_customer_number());
             //h.setBidder_email(myObject.getUser_email());
+            ho.setHAuctionObj(ho);
             
         }    }
 
