@@ -143,11 +143,7 @@ public class HandleAuction {
         
     }
     
-//    public boolean checkAuctionActive(int auctionID){
-//        
-//        
-//        
-//    }
+  
 
     
 }

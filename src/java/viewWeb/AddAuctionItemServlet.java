@@ -51,7 +51,7 @@ public class AddAuctionItemServlet extends HttpServlet {
             String auctionPictureFilePath = request.getParameter("auctionPicture");
             String auctionSpecificationURL = request.getParameter("itemSpecs");
             String auctionItemLocation = request.getParameter("auctionLocation");
-                        System.out.println(auctionItemLocation + "***********");
+            int auctionBidPool = Integer.valueOf(request.getParameter("defaultPool"));
 //            int auctionID = Integer.parseInt(String.valueOf(request.getParameter("auctionID")));
             int auctionID = 0; //pass it a number that means nothing but will be generated over by sql
             int auctionReservePrice = Integer.parseInt(String.valueOf(request.getParameter("auctionReservePrice")));
@@ -59,12 +59,12 @@ public class AddAuctionItemServlet extends HttpServlet {
              System.out.println("All done no errors");
             //next, update the auction for users to see with input information
             
-           AuctionItemObj a = new AuctionItemObj(auctionTitle, auctionPictureFilePath, auctionDescription, auctionID, auctionSpecificationURL, auctionItemLocation, auctionReservePrice,true);
+           AuctionItemObj a = new AuctionItemObj(auctionTitle, auctionPictureFilePath, auctionDescription, auctionID, auctionSpecificationURL, auctionItemLocation, auctionReservePrice,true, auctionBidPool);
             //place the auction object in the request
            request.setAttribute("auctionObj", a);
            
-              String sql = "insert into auctionitemtable (auctionTitle, auctionDescription, auctionPicture, auctionSpecURL, auctionItemLocation, auctionReserve, auctionActive)"
-                + "Values(?,?,?,?,?,?,?)";
+              String sql = "insert into auctionitemtable (auctionTitle, auctionDescription, auctionPicture, auctionSpecURL, auctionItemLocation, auctionReserve, auctionActive,auctionTotalBidsPool)"
+                + "Values(?,?,?,?,?,?,?,?)";
 
         try {
             //had to add this to register driver for some reason. 
@@ -83,6 +83,7 @@ public class AddAuctionItemServlet extends HttpServlet {
                  stmt.setString(5, auctionItemLocation);
                  stmt.setInt(6, auctionReservePrice);
                  stmt.setBoolean(7, true);
+                 stmt.setInt(8, auctionBidPool);
             //stmt.setString(2, password);
             stmt.executeUpdate();
         System.out.print("exe query?.");

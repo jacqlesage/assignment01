@@ -27,10 +27,11 @@ public class AuctionItemObj {
     private String itemLocation;
     private int auctionReservePrice;
     boolean auctionActive;
+    private int auctionPoolOfFunds;
     
     public static String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
-    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, int auctionReservePrice, boolean auctionActive) {
+    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, int auctionReservePrice, boolean auctionActive,int auctionPoolOfFunds) {
         this.auctionTitle = auctionTitle;
         this.auctionPicture = auctionPicture;
         this.auctionDescription = auctionDescription;
@@ -39,6 +40,7 @@ public class AuctionItemObj {
         this.itemLocation = itemLocation;
         this.auctionReservePrice = auctionReservePrice;
         this.auctionActive = false;
+        this.auctionPoolOfFunds = auctionPoolOfFunds;
     }
     
     public AuctionItemObj(){
@@ -46,7 +48,7 @@ public class AuctionItemObj {
     }
 
     //correct constructer - with no reserve price going in ...??
-    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, boolean auctionActive) {
+    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, boolean auctionActive, int auctionPoolOfFunds) {
         this.auctionTitle = auctionTitle;
         this.auctionPicture = auctionPicture;
         this.auctionDescription = auctionDescription;
@@ -54,6 +56,7 @@ public class AuctionItemObj {
         this.specsURL = specsURL;
         this.itemLocation = itemLocation;
         this.auctionActive = auctionActive;
+        this.auctionPoolOfFunds = auctionPoolOfFunds;
     }
 
     /**
@@ -208,6 +211,7 @@ public class AuctionItemObj {
         String aucItemLocation = null;
         String aucReserve;
         boolean aucActive = false; 
+        int aucTotalBidsPool = 0;
         
                 
         Class.forName("com.mysql.jdbc.Driver");        
@@ -230,6 +234,7 @@ public class AuctionItemObj {
                aucSpecURL = rs.getString("auctionSpecURL");
                aucItemLocation = rs.getString("auctionItemLocation");
                aucActive = rs.getBoolean("auctionActive");
+               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
                
 
                }
@@ -240,10 +245,75 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-        AuctionItemObj ao = new AuctionItemObj(aucPicture,aucTitle,aucDescription,aucID,aucSpecURL,aucItemLocation,aucActive);
+        AuctionItemObj ao = new AuctionItemObj(aucPicture,aucTitle,aucDescription,aucID,aucSpecURL,aucItemLocation,aucActive,aucTotalBidsPool);
           
         return ao;
     }
     
+    public void updateTotalBids(int bid) throws ClassNotFoundException{
+        int aucTotalBidsPool = 0;
+        int temp =0;
+        
+        Class.forName("com.mysql.jdbc.Driver");        
+        //only should be one auction active at a time...
+        String sql = "SELECT auctionTotalBidsPool" +
+        "FROM auctionitemtable" +
+        "WHERE auctionActive=true";
+          //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+           
+                          
+
+           ResultSet rs =  stmt.executeQuery();
+          
+              while (rs.next()) {
+             
+               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
+               
+
+               }
+             
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
+            String sql2 = "UPDATE auctionitemtable" +
+            "SET auctionTotalBidsPool=?" +
+            "WHERE auctionActive=true";
+        
+            //update with the new value 
+           try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql2);
+               ){
+               //add to current value 
+               temp += aucTotalBidsPool + bid;
+               //got to complete this  - adding values and updating old / this is a new method also
+               stmt.setBoolean(1, obj.isIsActive());//making sure the auction is active might be able to derrive this also
+            
+  
+               stmt.executeUpdate();
+                
+
+           ResultSet rs =  stmt.executeQuery();
+          
+              while (rs.next()) {
+             
+               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
+               
+
+               }
+             
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
             
 }

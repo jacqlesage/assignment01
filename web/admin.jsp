@@ -66,6 +66,14 @@
                             </div>
                             
                         </div>
+                        
+                         <div class="row">
+                            <div class="large-4 columns">
+                                <label>Current pool of funds:</label>
+                                <input type="number" value="0" id="defaultPool" name="defaultPool" data-parsley-required="true" data-parsley-type="number" readonly>
+                            </div>
+                            
+                        </div>
 
                         <div class="row">
                             <div class="large-centered large-9 columns">
