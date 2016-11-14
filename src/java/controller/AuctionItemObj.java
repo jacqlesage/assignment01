@@ -252,14 +252,16 @@ public class AuctionItemObj {
     
     public void updateTotalBids(int bid) throws ClassNotFoundException{
         int aucTotalBidsPool = 0;
-        int temp =0;
+        
+        boolean x = false;
         
         Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
-        String sql = "SELECT auctionTotalBidsPool" +
-        "FROM auctionitemtable" +
-        "WHERE auctionActive=true";
-          //create the statement that you want to find from the string
+        String sql = "SELECT auctionTotalBidsPool " +
+        "FROM auctionitemtable " +
+        "WHERE auctionActive = '1'";//true setup as tinyint
+    
+         //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
                ){
@@ -271,10 +273,9 @@ public class AuctionItemObj {
               while (rs.next()) {
              
                aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
-               
-
+  
                }
-             
+    
               
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
@@ -282,32 +283,23 @@ public class AuctionItemObj {
         }
            
         
-            String sql2 = "UPDATE auctionitemtable" +
-            "SET auctionTotalBidsPool=?" +
-            "WHERE auctionActive=true";
+            String sql2 = "UPDATE auctionitemtable " +
+            "SET auctionTotalBidsPool = ? " +
+            "WHERE auctionActive = ?";
         
             //update with the new value 
            try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql2);
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
                ){
                //add to current value 
-               temp += aucTotalBidsPool + bid;
+               aucTotalBidsPool += bid;
                //got to complete this  - adding values and updating old / this is a new method also
-               stmt.setBoolean(1, obj.isIsActive());//making sure the auction is active might be able to derrive this also
-            
-  
-               stmt.executeUpdate();
+               //stmt.setBoolean(1, obj.isIsActive());//making sure the auction is active might be able to derrive this also
+               stmt2.setInt(1, aucTotalBidsPool);
+               stmt2.setBoolean(2, true);
+               System.out.println("((((((( " + aucTotalBidsPool);
+               stmt2.executeUpdate();
                 
-
-           ResultSet rs =  stmt.executeQuery();
-          
-              while (rs.next()) {
-             
-               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
-               
-
-               }
-             
               
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");

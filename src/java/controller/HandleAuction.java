@@ -137,9 +137,16 @@ public class HandleAuction {
                 
                  
              } catch (SQLException ex) {
-                 System.out.println("no customer found***");
+                 System.out.println("no customer found in handleAuction class***");
                  Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
+             
+             //access update of totalbids 
+             AuctionItemObj aio = new AuctionItemObj();
+             //call update bid method
+             int x = obj.getBidAmount();
+             System.out.println("x = ***** " +x);
+             aio.updateTotalBids(x);
         
     }
     

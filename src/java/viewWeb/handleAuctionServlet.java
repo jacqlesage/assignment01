@@ -93,6 +93,7 @@ public class handleAuctionServlet extends HttpServlet {
             //h.setCustomer_table_ID(myObject.getUser_customer_number());
             //h.setBidder_email(myObject.getUser_email());
             ho.setHAuctionObj(ho);
+           
             
         }    }
 
