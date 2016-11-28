@@ -216,7 +216,7 @@ public class AuctionItemObj {
                 
         Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
-        String sql = "SELECT * FROM auctionitemTable WHERE auctionActive = true";
+        String sql = "SELECT * FROM auctionitemtable WHERE auctionActive = true";
           //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -282,7 +282,6 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-        
             String sql2 = "UPDATE auctionitemtable " +
             "SET auctionTotalBidsPool = ? " +
             "WHERE auctionActive = ?";
@@ -304,6 +303,46 @@ public class AuctionItemObj {
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+           checkAuctionWon(aucTotalBidsPool);
+           
+    }
+    
+    private void checkAuctionWon(int x) throws ClassNotFoundException{
+        
+        int auctionReserve = 0;
+        
+         Class.forName("com.mysql.jdbc.Driver");        
+        //only should be one auction active at a time...
+        String sql = "SELECT auctionReserve " +
+        "FROM auctionitemtable ";
+       
+    
+         //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+           
+                          
+
+           ResultSet rs =  stmt.executeQuery();
+          
+              while (rs.next()) {
+             
+               auctionReserve = rs.getInt("auctionReserve");
+  
+               }
+    
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(x == auctionReserve){
+              System.out.println("Auction won = true");
+              System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");
         }
         
     }
