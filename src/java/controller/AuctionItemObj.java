@@ -305,13 +305,21 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-           checkAuctionWon(aucTotalBidsPool);
+           if(checkAuctionWon(aucTotalBidsPool)){
+               
+               //turn auction active to not 
+              //display a please wait while we congratulate the winner page ?
+              //rezally need to get another auciton up to bid on asap - another table to load future auctions in ?
+              //or do I want the unknown down time ??
+               
+           }
            
     }
     
-    private void checkAuctionWon(int x) throws ClassNotFoundException{
+    private boolean checkAuctionWon(int auctionBidAmount) throws ClassNotFoundException{
         
         int auctionReserve = 0;
+        boolean returnVal = false;
         
          Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
@@ -324,8 +332,6 @@ public class AuctionItemObj {
             PreparedStatement stmt = con.prepareStatement(sql);
                ){
            
-                          
-
            ResultSet rs =  stmt.executeQuery();
           
               while (rs.next()) {
@@ -340,11 +346,14 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(x == auctionReserve){
+        if(auctionBidAmount == auctionReserve){
+            returnVal = true;
               System.out.println("Auction won = true");
               System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");
+              
         }
         
+        return returnVal;
     }
             
 }
