@@ -102,13 +102,11 @@ public class HandleAuction {
     }
     
     public void setHAuctionObj(HandleAuction obj) throws ClassNotFoundException{
-        
+            boolean win = false;
            //total bids needs to be derrived from all bids so far 
-        String sql = "INSERT INTO handleauctiontable(auctionItem_ID, customerTable_ID, ha_bidder_FName, ha_bidder_LName, ha_bidder_email, ha_totalCurrentBids,ha_isActive)"
-                + "values(?,?,?,?,?,?,?)";
-     
-   
-                               
+            String sql = "INSERT INTO handleauctiontable(auctionItem_ID, customerTable_ID, ha_bidder_FName, ha_bidder_LName, ha_bidder_email, ha_totalCurrentBids,ha_isActive)"
+            + "values(?,?,?,?,?,?,?)";
+               
              try (Connection con = DriverManager.getConnection(url, "root", "");
             PreparedStatement stmt = con.prepareStatement(sql);
                ){
@@ -146,7 +144,17 @@ public class HandleAuction {
              //call update bid method
              int x = obj.getBidAmount();
              System.out.println("x = ***** " +x);
-             aio.updateTotalBids(x);
+             
+             //see if the bid has hit the reserve price
+             win = aio.updateTotalBids(x);
+             
+             if(win){
+             //deactivate auction
+             
+             //add to backup table
+             
+             //display sorting out the winner page while I sort out what to do about upcoming auctions.
+             }
         
     }
     

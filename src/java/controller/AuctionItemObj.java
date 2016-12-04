@@ -199,7 +199,16 @@ public class AuctionItemObj {
     public void setAuctionReservePrice(int auctionReservePrice) {
         this.auctionReservePrice = auctionReservePrice;
     }
+
+    public boolean isAuctionActive() {
+        return auctionActive;
+    }
+
+    public void setAuctionActive(boolean auctionActive) {
+        this.auctionActive = auctionActive;
+    }
     
+        
     public AuctionItemObj getAuctionItemObject() throws ClassNotFoundException{
         //need to create a object to get all of the information about the auction Object
         //use the getters and setters for the object from there.
@@ -250,10 +259,10 @@ public class AuctionItemObj {
         return ao;
     }
     
-    public void updateTotalBids(int bid) throws ClassNotFoundException{
+    public boolean updateTotalBids(int bid) throws ClassNotFoundException{
         int aucTotalBidsPool = 0;
         
-        boolean x = false;
+        boolean win = false;
         
         Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
@@ -307,13 +316,10 @@ public class AuctionItemObj {
         
            if(checkAuctionWon(aucTotalBidsPool)){
                
-               //turn auction active to not 
-              //display a please wait while we congratulate the winner page ?
-              //rezally need to get another auciton up to bid on asap - another table to load future auctions in ?
-              //or do I want the unknown down time ??
-               
+               win = true;
            }
            
+           return win;
     }
     
     private boolean checkAuctionWon(int auctionBidAmount) throws ClassNotFoundException{
@@ -350,10 +356,11 @@ public class AuctionItemObj {
             returnVal = true;
               System.out.println("Auction won = true");
               System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");
-              
-        }
+          }
         
         return returnVal;
     }
+    
+    
             
 }
