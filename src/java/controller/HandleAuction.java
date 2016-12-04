@@ -150,8 +150,10 @@ public class HandleAuction {
              
              if(win){
              //deactivate auction
+             aio.setAuctionActive(false);
              
              //add to backup table
+          
              
              //display sorting out the winner page while I sort out what to do about upcoming auctions.
              }
