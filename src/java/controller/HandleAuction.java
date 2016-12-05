@@ -8,6 +8,7 @@ package controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
@@ -138,29 +139,41 @@ public class HandleAuction {
                  System.out.println("no customer found in handleAuction class***");
                  Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
-             
-             //access update of totalbids 
-             AuctionItemObj aio = new AuctionItemObj();
-             //call update bid method
-             int x = obj.getBidAmount();
-             System.out.println("x = ***** " +x);
-             
-             //see if the bid has hit the reserve price
-             win = aio.updateTotalBids(x);
-             
-             if(win){
-             //deactivate auction
-             aio.setAuctionActive(false);
-             
-             //add to backup table
-          
-             
-             //display sorting out the winner page while I sort out what to do about upcoming auctions.
-             }
-        
+                   
     }
     
-  
-
+    public int addUpWinnersTotalBidsOnAuction(String email) throws ClassNotFoundException{
+             int totalBids = 0;
+             String sql = "SELECT SUM(ha_totalCurrentBids) AS TotalAmountBidByCustomer FROM handleauctiontable " +
+                "WHERE ha_bidder_email='?'";
+               
+             try (Connection con = DriverManager.getConnection(url, "root", "");
+             PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+                 //change this code to meet new signup code. <- copied from above
+                 //had to add this to register driver for some reason. 
+                 Class.forName("com.mysql.jdbc.Driver");
+       
+                 System.out.println("in adding up winners bid method");
+          
+                 stmt.setString(1,email);
+               
+                 ResultSet rs =  stmt.executeQuery();
+                 
+                 
+                 while(rs.next()){
+                     
+                     totalBids =  rs.getInt("customerNumber");
+                 }
+                
+                 
+             } catch (SQLException ex) {
+                 System.out.println("no customer found in handleAuction class***");
+                 Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+             return totalBids;
+    }
+    
     
 }

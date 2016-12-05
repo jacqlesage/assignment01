@@ -5,8 +5,10 @@
  */
 package viewWeb;
 
+import controller.AuctionItemObj;
 import controller.CustomerObj;
 import controller.HandleAuction;
+import controller.HistoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -43,6 +45,7 @@ public class handleAuctionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Integer bidAmount = Integer.valueOf(request.getParameter("bidAmount"));
+        String auctionTitle = request.getParameter("auctionTitle");
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -89,15 +92,28 @@ public class handleAuctionServlet extends HttpServlet {
             //get the customer object details 
             CustomerObj co = (CustomerObj) request.getSession().getAttribute("customer");
             //put together a handleAuction object
-            HandleAuction ho = new HandleAuction(bid,co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
-            //h.setCustomer_table_ID(myObject.getUser_customer_number());
-            //h.setBidder_email(myObject.getUser_email());
-            ho.setHAuctionObj(ho);
-           
-            
-        }    }
+            HandleAuction ha = new HandleAuction(bid,co.getUser_first_name(), co.getUser_last_name(), co.getUser_email(),co.getUser_customer_number(), auctionID);
+             //now enter details into handle auction table - the table the tracks all the bids
+            ha.setHAuctionObj(ha);
+            //now update total bids / the total bids towards reserve price
+            AuctionItemObj aio = new AuctionItemObj();
+            int totalAuctionBids = aio.updateTotalBids(bidAmount);
+            boolean auctionWon = aio.checkAuctionWon(totalAuctionBids);
+            //has the auction been won?
+            if(auctionWon){
+             //calculate winners total bids in auciton
+             int winnersTotalBids = ha.addUpWinnersTotalBidsOnAuction(co.getUser_email());
 
-    
+             //add details to winners history table
+             HistoryDAO hDAO = new HistoryDAO(auctionID, auctionTitle, co.getUser_customer_number(), co.getUser_first_name(), co.getUser_email(), winnersTotalBids);//bid should be total bids for the auction
+             
+     
+            }    
+ 
+            
+        }    
+
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -146,4 +162,5 @@ public class handleAuctionServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+    
+} 

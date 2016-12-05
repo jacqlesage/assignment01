@@ -259,10 +259,9 @@ public class AuctionItemObj {
         return ao;
     }
     
-    public boolean updateTotalBids(int bid) throws ClassNotFoundException{
+    public int updateTotalBids(int bid) throws ClassNotFoundException{
         int aucTotalBidsPool = 0;
-        
-        boolean win = false;
+ 
         
         Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
@@ -314,15 +313,12 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-           if(checkAuctionWon(aucTotalBidsPool)){
-               
-               win = true;
-           }
-           
-           return win;
+            
+           //return the total bids 
+           return aucTotalBidsPool;
     }
     
-    private boolean checkAuctionWon(int auctionBidAmount) throws ClassNotFoundException{
+    public boolean checkAuctionWon(int auctionTotalAmount) throws ClassNotFoundException{
         
         int auctionReserve = 0;
         boolean returnVal = false;
@@ -352,7 +348,7 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(auctionBidAmount == auctionReserve){
+        if(auctionTotalAmount == auctionReserve){
             returnVal = true;
               System.out.println("Auction won = true");
               System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");

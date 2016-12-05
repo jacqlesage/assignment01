@@ -22,14 +22,14 @@ public class HistoryDAO {
     private int totalBidsForAuction;
     private Date timeStamp;
 
-    public HistoryDAO(int aucNumber, String aucTitle, int cusNumber, String cusName, String cusEmail, int totalBidsForAuction, Date timeStamp) {
+    public HistoryDAO(int aucNumber, String aucTitle, int cusNumber, String cusName, String cusEmail, int totalBidsForAuction) {
         this.aucNumber = aucNumber;
         this.aucTitle = aucTitle;
         this.cusNumber = cusNumber;
         this.cusName = cusName;
         this.cusEmail = cusEmail;
         this.totalBidsForAuction = totalBidsForAuction;
-        this.timeStamp = timeStamp;
+        
     }
 
     public int getAucNumber() {
