@@ -5,7 +5,14 @@
  */
 package controller;
 
+import static controller.AuctionItemObj.url;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -64,9 +71,30 @@ public class HistoryDAO {
         A method to insert who one into a history table
         @param hDAO - object being inserted into the table
     **/
-    private void insertAuctionWinHistory(HistoryDAO hDAO){
+    private void insertAuctionWinHistory(HistoryDAO hDAO) throws ClassNotFoundException{
         
-        
+          Class.forName("com.mysql.jdbc.Driver");        
+        //only should be one auction active at a time...
+        String sql = "INSERT INTO winnershistorytable " +
+        "VALUES (?,?,?,?,?,?)";
+       
+    
+         //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+           
+           stmt.setInt(1, hDAO.getAucNumber());
+           stmt.setString(2, hDAO.getAucTitle());
+           stmt.setInt(3, hDAO.getCusNumber());
+           stmt.setString(4, hDAO.getCusName());
+           stmt.setInt(5, hDAO.getTotalBidsForAuction());
+    
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }            
     

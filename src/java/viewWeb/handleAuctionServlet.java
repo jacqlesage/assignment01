@@ -103,7 +103,6 @@ public class handleAuctionServlet extends HttpServlet {
             if(auctionWon){
              //calculate winners total bids in auciton
              int winnersTotalBids = ha.addUpWinnersTotalBidsOnAuction(co.getUser_email());
-
              //add details to winners history table
              HistoryDAO hDAO = new HistoryDAO(auctionID, auctionTitle, co.getUser_customer_number(), co.getUser_first_name(), co.getUser_email(), winnersTotalBids);//bid should be total bids for the auction
              
