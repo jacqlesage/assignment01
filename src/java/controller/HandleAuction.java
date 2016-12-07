@@ -145,7 +145,7 @@ public class HandleAuction {
     public int addUpWinnersTotalBidsOnAuction(String email) throws ClassNotFoundException{
              int totalBids = 0;
              String sql = "SELECT SUM(ha_totalCurrentBids) AS TotalAmountBidByCustomer FROM handleauctiontable " +
-                "WHERE ha_bidder_email='?'";
+                "WHERE ha_bidder_email= ?";
                
              try (Connection con = DriverManager.getConnection(url, "root", "");
              PreparedStatement stmt = con.prepareStatement(sql);
@@ -163,7 +163,7 @@ public class HandleAuction {
                  
                  while(rs.next()){
                      
-                     totalBids =  rs.getInt("customerNumber");
+                     totalBids =  rs.getInt(1);
                  }
                 
                  

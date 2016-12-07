@@ -348,7 +348,7 @@ public class AuctionItemObj {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(auctionTotalAmount == auctionReserve){
+        if(auctionTotalAmount >= auctionReserve){
             returnVal = true;
               System.out.println("Auction won = true");
               System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");

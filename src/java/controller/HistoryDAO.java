@@ -71,8 +71,8 @@ public class HistoryDAO {
         A method to insert who one into a history table
         @param hDAO - object being inserted into the table
     **/
-    private void insertAuctionWinHistory(HistoryDAO hDAO) throws ClassNotFoundException{
-        
+    public void insertAuctionWinHistory(HistoryDAO hDAO) throws ClassNotFoundException{
+        System.out.println("****** inside inserting winner into history table ");
           Class.forName("com.mysql.jdbc.Driver");        
         //only should be one auction active at a time...
         String sql = "INSERT INTO winnershistorytable " +
@@ -87,9 +87,11 @@ public class HistoryDAO {
            stmt.setInt(1, hDAO.getAucNumber());
            stmt.setString(2, hDAO.getAucTitle());
            stmt.setInt(3, hDAO.getCusNumber());
-           stmt.setString(4, hDAO.getCusName());
-           stmt.setInt(5, hDAO.getTotalBidsForAuction());
+           stmt.setString(4, hDAO.getCusEmail());
+           stmt.setString(5, hDAO.getCusName());
+           stmt.setInt(6, hDAO.getTotalBidsForAuction() );
     
+           stmt.executeUpdate();
               
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");

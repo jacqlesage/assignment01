@@ -56,6 +56,7 @@ public class handleAuctionServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet handleAuctionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1> at auction title" + auctionTitle + "</h1>");
             out.println("</body>");
             out.println("</html>");
 
@@ -97,15 +98,19 @@ public class handleAuctionServlet extends HttpServlet {
             ha.setHAuctionObj(ha);
             //now update total bids / the total bids towards reserve price
             AuctionItemObj aio = new AuctionItemObj();
+            System.out.println("just before update of total bids");
             int totalAuctionBids = aio.updateTotalBids(bidAmount);
+            System.out.println("just before check auction won");
             boolean auctionWon = aio.checkAuctionWon(totalAuctionBids);
             //has the auction been won?
+             System.out.println("auction won = " + auctionWon);
             if(auctionWon){
              //calculate winners total bids in auciton
              int winnersTotalBids = ha.addUpWinnersTotalBidsOnAuction(co.getUser_email());
              //add details to winners history table
              HistoryDAO hDAO = new HistoryDAO(auctionID, auctionTitle, co.getUser_customer_number(), co.getUser_first_name(), co.getUser_email(), winnersTotalBids);//bid should be total bids for the auction
              
+             hDAO.insertAuctionWinHistory(hDAO);
      
             }    
  
