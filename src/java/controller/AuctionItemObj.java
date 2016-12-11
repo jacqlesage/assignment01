@@ -357,6 +357,34 @@ public class AuctionItemObj {
         return returnVal;
     }
     
+    /**
+     * A method which closes the active auction
+     * 
+     * @throws ClassNotFoundException 
+     */
+    public void closeAuction() throws ClassNotFoundException{
+        System.out.println("in close auction");
+        //get item object
+          Class.forName("com.mysql.jdbc.Driver");        
+        //only should be one auction active at a time...
+        String sql = "UPDATE auctionitemtable " +
+        "SET auctionActive='0' " +
+         "WHERE auctionActive='1'";
+        
+    
+         //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+            PreparedStatement stmt = con.prepareStatement(sql);
+               ){
+          
+            stmt.executeUpdate();
+              
+              
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
             
 }
