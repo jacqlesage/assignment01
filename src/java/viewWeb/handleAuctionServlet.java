@@ -113,6 +113,8 @@ public class handleAuctionServlet extends HttpServlet {
              hDAO.insertAuctionWinHistory(hDAO);
              //close auction off
              aio.closeAuction();
+             //make web page show waiting for winner? later a new auction can begin
+             
             }    
  
             

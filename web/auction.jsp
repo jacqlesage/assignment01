@@ -26,9 +26,10 @@
  <script src="js/loadProductDescription.js" type="text/javascript"></script>
       
  <% 
+     //need to deal with an auction not being in here*******
     //AuctionItemObj a = (AuctionItemObj)request.getAttribute("auctionObj");
      //System.out.println(a.getAuctionDescription());
-     AuctionItemObj a = new AuctionItemObj();
+     AuctionItemObj auc = new AuctionItemObj();
      String temp = "";
   %>
 
@@ -61,12 +62,17 @@
                      
 <!--                  //<h2 id="auctionHeading"> </h2>-->
                     <!-- get the title description from the database -->
-                    <h2><%  out.print(a.getAuctionTitle()); %> </h2>
+                    <h2><%  if(auc != null){ %>
+                            <%out.print(auc.getAuctionTitle());%>
+                        <%}else{ %>
+                           <% out.print("Please be patient while we get our next auction ready, we have a winner to congratulate first");
+                        }%> 
+                    </h2>
                     <!--//Get the picture file location.-->
-                    <img src="<%out.print(a.getAuctionPicture());%>">
+                    <img src="<%out.print(auc.getAuctionPicture());%>">
                       
                      <!--get auction description paragraph-->
-                    <p> <%  out.print(a.getAuctionDescription());%> 
+                    <p> <%  out.print(auc.getAuctionDescription());%> 
 <!--                        Brand new, in box, iPhone 6s Plus - 128gb. The latest and greatest in smart phone technology.
                         This phone could be your for just $1, assuming you have already <a href="index.jsp#signup">Signed Up</a> and are <a href="login.html">logged in</a>
                         use the bid button below to get started.-->

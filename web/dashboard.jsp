@@ -109,6 +109,7 @@
                         <i class="fi-check"></i>
                         <ul>
                             <form action="handleAuctionServlet" method="post">
+                                <% if(ao != null){ %>
                                 <!-- no need for id="auctionHeading" any more - auction set from admin page -->
                                 <li>Auction number: <input type="text" value="<% out.print(ao.getAuctionID()); %>" id="auctionNumber" name="auctionNumber" readonly></li>
                                 <li>  What's on auction: <input id="auctionTitle" name="auctionTitle" value="<% out.print(" " + ao.getAuctionTitle()); %>" > </li>
@@ -118,7 +119,17 @@
                                 <li id="auctionPicThumbnail" name="auctionPicThumbnail"> Here would insert the picture of the item <% out.print(" " + ao.getAuctionPicture()); %> </li>
                             <li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id="bidAmount" max="10"></li>
                             <li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>
+                            <%}else{%>
+                                <li>Auction number: <input type="text" value="<% out.print(ao.getAuctionID()); %>" id="auctionNumber" name="auctionNumber" readonly></li>
+                                <li>  What's on auction: <input id="auctionTitle" name="auctionTitle" value="Please wait while we congrulate our latest winner" > </li>
+                                <li id="auctionDescription" name="auctionDescription" value="Please wait while we congrulate our latest winner" >  </li>
+                                <li id="auctionItemLocation" name="auctionItemLocation" value="Please wait while we congrulate our latest winner" > </li>
+                                <li id="auctionSpecInformation" name="auctionSpecInformation" value="Please wait while we congrulate our latest winner" > </li>
+                                <li id="auctionPicThumbnail" name="auctionPicThumbnail" value="Please wait while we congrulate our latest winner" ></li>
+                            <!--<li>Bid amount. (In whole dollars only)  <input type="number" name="bidAmount" id="bidAmount" max="10"></li>-->
+                            <!--<li>Bid Percentage: 18% need to work out a graph for this - not hard code</li>-->
                             
+                            <%}%>
                             <li><button class="button" type="submit">Bid on this auction</button></li>
                             <li><button class="button">Go to auction page</button></li>
                             </form>

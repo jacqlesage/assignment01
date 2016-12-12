@@ -358,7 +358,7 @@ public class AuctionItemObj {
     }
     
     /**
-     * A method which closes the active auction
+     * A method which closes the active auction by making "auctionActive = 0"
      * 
      * @throws ClassNotFoundException 
      */
