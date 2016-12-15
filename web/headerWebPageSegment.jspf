@@ -13,15 +13,22 @@
     a = new AuctionItemObj();
     HttpSession session1 = request.getSession();
        
-   if(session1 == null){
-        System.out.println("Customer is null :(");
-    }else{
-      c = new CustomerObj();
+//   if(session1 == null){
+//        System.out.println("Customer is null :(");
+//    }else{
+//      c = new CustomerObj();
+//       c = (CustomerObj) session1.getAttribute("customer");
+//            System.out.println("attrib names " + session1.getAttribute("customer").toString());
+//          }
+//    }else{
+//        
+//    }
+
+    if(session1 != null){
+        c = new CustomerObj();
        c = (CustomerObj) session1.getAttribute("customer");
             System.out.println("attrib names " + session1.getAttribute("customer").toString());
-          }
-    }else{
-        
+    }
     }
          
 %>

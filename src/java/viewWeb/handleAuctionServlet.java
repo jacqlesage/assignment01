@@ -116,7 +116,8 @@ public class handleAuctionServlet extends HttpServlet {
              //make web page show waiting for winner? later a new auction can begin
              
             }    
- 
+            //redirect back to the dashboard
+            response.sendRedirect("dashboard.jsp");
             
         }    
 
