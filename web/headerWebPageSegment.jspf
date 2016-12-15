@@ -16,11 +16,12 @@
    if(session1 == null){
         System.out.println("Customer is null :(");
     }else{
-//       c = new CustomerObj();
+      c = new CustomerObj();
        c = (CustomerObj) session1.getAttribute("customer");
-       System.out.println("attrib names " + session1.getAttribute("customer").toString());
-       
-   }
+            System.out.println("attrib names " + session1.getAttribute("customer").toString());
+          }
+    }else{
+        
     }
          
 %>

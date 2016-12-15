@@ -62,7 +62,7 @@
                      
 <!--                  //<h2 id="auctionHeading"> </h2>-->
                     <!-- get the title description from the database -->
-                    <h2><%  if(auc != null){ %>
+                    <h2><%  if(auc.getAuctionID() != 0){ %>
                             <%out.print(auc.getAuctionTitle());%>
                         <%}else{ %>
                            <% out.print("Please be patient while we get our next auction ready, we have a winner to congratulate first");

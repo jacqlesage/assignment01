@@ -207,6 +207,12 @@ public class AuctionItemObj {
     public void setAuctionActive(boolean auctionActive) {
         this.auctionActive = auctionActive;
     }
+
+    @Override
+    public String toString() {
+        return "AuctionItemObj{" + "auctionTitle=" + auctionTitle + ", auctionPicture=" + auctionPicture + ", auctionDescription=" + auctionDescription + ", auctionID=" + auctionID + ", specsURL=" + specsURL + ", itemLocation=" + itemLocation + ", auctionReservePrice=" + auctionReservePrice + ", auctionActive=" + auctionActive + ", auctionPoolOfFunds=" + auctionPoolOfFunds + '}';
+    }
+    
     
         
     public AuctionItemObj getAuctionItemObject() throws ClassNotFoundException{
