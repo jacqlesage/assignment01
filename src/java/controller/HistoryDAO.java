@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @author James
  */
 public class HistoryDAO {
+
     //things that need to be in table to keep a track of winners for each auction.
     private int aucNumber;
     private String aucTitle;
@@ -36,7 +37,7 @@ public class HistoryDAO {
         this.cusName = cusName;
         this.cusEmail = cusEmail;
         this.totalBidsForAuction = totalBidsForAuction;
-        
+
     }
 
     public int getAucNumber() {
@@ -66,38 +67,38 @@ public class HistoryDAO {
     public Date getTimeStamp() {
         return timeStamp;
     }
-    
+
     /**
-        A method to insert who one into a history table
-        @param hDAO - object being inserted into the table
-    **/
-    public void insertAuctionWinHistory(HistoryDAO hDAO) throws ClassNotFoundException{
+     * A method to insert who one into a history table
+     *
+     * @param hDAO - object being inserted into the table
+    *
+     */
+    public void insertAuctionWinHistory(HistoryDAO hDAO) throws ClassNotFoundException {
         System.out.println("****** inside inserting winner into history table ");
-          Class.forName("com.mysql.jdbc.Driver");        
+        Class.forName("com.mysql.jdbc.Driver");
         //only should be one auction active at a time...
-        String sql = "INSERT INTO winnershistorytable " +
-        "VALUES (?,?,?,?,?,?)";
-       
-    
-         //create the statement that you want to find from the string
+        String sql = "INSERT INTO winnershistorytable "
+                + "VALUES (?,?,?,?,?,?)";
+
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-           
-           stmt.setInt(1, hDAO.getAucNumber());
-           stmt.setString(2, hDAO.getAucTitle());
-           stmt.setInt(3, hDAO.getCusNumber());
-           stmt.setString(4, hDAO.getCusEmail());
-           stmt.setString(5, hDAO.getCusName());
-           stmt.setInt(6, hDAO.getTotalBidsForAuction() );
-    
-           stmt.executeUpdate();
-              
+                PreparedStatement stmt = con.prepareStatement(sql);) {
+
+            stmt.setInt(1, hDAO.getAucNumber());
+            stmt.setString(2, hDAO.getAucTitle());
+            stmt.setInt(3, hDAO.getCusNumber());
+            stmt.setString(4, hDAO.getCusEmail());
+            stmt.setString(5, hDAO.getCusName());
+            stmt.setInt(6, hDAO.getTotalBidsForAuction());
+
+            stmt.executeUpdate();
+
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }            
-    
+
+    }
+
 }

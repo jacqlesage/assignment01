@@ -22,38 +22,42 @@ import java.util.logging.Logger;
  * @author James
  */
 public class AccountDAO {
-    
-   
-    private int currentAccountBalance;
-    String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
-      public int getCurrentAccountBalance() throws ClassNotFoundException {
-          String temp;
-          ResultSet r;
-          int rs =0;
-           //this.currentAccountBalance = currentAccountBalance;
-        //System.out.println(this.currentAccountBalance + " llkjlkjl");
-           String sql = "SELECT customerBalance FROM customerTable";
-        
-        try{
-        
+    private int currentAccountBalance;
+    String url = "jdbc:mysql://localhost:3306/dollarlogindb";
+
+    /**
+     * A method which returns the current balance
+     * 
+     * @return
+     * @throws ClassNotFoundException 
+     */
+    public int getCurrentAccountBalance() throws ClassNotFoundException {
+        String temp;
+        ResultSet r;
+        int rs = 0;
+
+        String sql = "SELECT customerBalance FROM customerTable";
+
+        try {
+
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, "root", "");
-            
+
             PreparedStatement stmt = con.prepareStatement(sql);
-                                               
-            r = stmt.executeQuery(); 
-            
-            while(r.next()){
+
+            r = stmt.executeQuery();
+
+            while (r.next()) {
                 rs = r.getInt("customerBalance");
             }
-            
-        }  catch (SQLException ex) {
-                 System.out.println("account issues");
-                 Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException ex) {
+            System.out.println("account issues");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-          System.out.println(rs);
+
+        System.out.println(rs);
         return rs;
     }
 
@@ -62,25 +66,24 @@ public class AccountDAO {
 
         this.currentAccountBalance = currentAccountBalance;
         //System.out.println(this.currentAccountBalance + " llkjlkjl");
-           String sql = "UPDATE customertable SET customerBalance =?";
-        
-        try{
-        
+        String sql = "UPDATE customertable SET customerBalance =?";
+
+        try {
+
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, "root", "");
-            
+
             PreparedStatement stmt = con.prepareStatement(sql);
-            
-            stmt.setInt(1, currentAccountBalance+getCurrentAccountBalance());
-                        
-            stmt.executeUpdate(); 
-            
-        }  catch (SQLException ex) {
-                 System.out.println("account issues");
-                 Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+            stmt.setInt(1, currentAccountBalance + getCurrentAccountBalance());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("account issues");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
-    
+
 }

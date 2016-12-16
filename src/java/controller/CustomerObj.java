@@ -146,7 +146,13 @@ public class CustomerObj {
     }
     
      
-
+        /**
+         * A method to get the customer object/all customer details from the table.
+         * 
+         * @param o = customer object
+         * @return returns the customer object
+         * @throws ClassNotFoundException 
+         */
         public CustomerObj getCustomer(CustomerObj o) throws ClassNotFoundException{
         
         int cusID = 0;

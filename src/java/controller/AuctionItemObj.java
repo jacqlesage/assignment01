@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author James
  */
 public class AuctionItemObj {
+
     private String auctionTitle;
     private String auctionPicture;
     private String auctionDescription;
@@ -28,10 +29,10 @@ public class AuctionItemObj {
     private int auctionReservePrice;
     boolean auctionActive;
     private int auctionPoolOfFunds;
-    
-    public static String url =  "jdbc:mysql://localhost:3306/dollarlogindb";
 
-    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, int auctionReservePrice, boolean auctionActive,int auctionPoolOfFunds) {
+    public static String url = "jdbc:mysql://localhost:3306/dollarlogindb";
+
+    public AuctionItemObj(String auctionTitle, String auctionPicture, String auctionDescription, int auctionID, String specsURL, String itemLocation, int auctionReservePrice, boolean auctionActive, int auctionPoolOfFunds) {
         this.auctionTitle = auctionTitle;
         this.auctionPicture = auctionPicture;
         this.auctionDescription = auctionDescription;
@@ -42,9 +43,9 @@ public class AuctionItemObj {
         this.auctionActive = false;
         this.auctionPoolOfFunds = auctionPoolOfFunds;
     }
-    
-    public AuctionItemObj(){
-        
+
+    public AuctionItemObj() {
+
     }
 
     //correct constructer - with no reserve price going in ...??
@@ -60,70 +61,72 @@ public class AuctionItemObj {
     }
 
     /**
-     *
-     * @return
+     *A method to get the auction title as String
+     * 
+     * @return 
      * @throws ClassNotFoundException
      */
     public String getAuctionTitle() throws ClassNotFoundException {
         //System.out.println("auctionTitle");
         Class.forName("com.mysql.jdbc.Driver");
-        String temp ="";
-        
+        String temp = "";
+
         String sql = "SELECT auctionTitle FROM auctionitemtable WHERE auctionActive = true";
-          //create the statement that you want to find from the string
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
 
-               ResultSet rs =  stmt.executeQuery();
-      
+            ResultSet rs = stmt.executeQuery();
+
             while (rs.next()) {
-               temp =  rs.getString("auctionTitle");
-               System.out.println(temp + " %%%%%");
+                temp = rs.getString("auctionTitle");
+                System.out.println(temp + " %%%%%");
 
-               }
+            }
 
         } catch (SQLException ex) {
             System.out.println("no customer found in set user");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         auctionTitle = temp;
-        
+
         return auctionTitle;
     }
 
-    public void setAuctionTitle(String auctionTitle) throws ClassNotFoundException {
-                 
-    }
-
+//    public void setAuctionTitle(String auctionTitle) throws ClassNotFoundException {
+//Looks like this is not needed
+//    }
+    /**
+     * A method which gets the auction pictures location
+     * @return
+     * @throws ClassNotFoundException 
+     */
     public String getAuctionPicture() throws ClassNotFoundException {
-        
+
         Class.forName("com.mysql.jdbc.Driver");
-        String temp ="";
-        
+        String temp = "";
+
         String sql = "SELECT auctionPicture FROM auctionitemtable WHERE auctionActive = true";
-          //create the statement that you want to find from the string
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
 
-               ResultSet rs =  stmt.executeQuery();
-      
+            ResultSet rs = stmt.executeQuery();
+
             while (rs.next()) {
-               temp =  rs.getString("auctionPicture");
-               System.out.println(temp + " %%%%%");
+                temp = rs.getString("auctionPicture");
+                System.out.println(temp + " %%%%%");
 
-               }
+            }
 
         } catch (SQLException ex) {
             System.out.println("no customer found in set picture");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         auctionPicture = temp;
-        
-              
+
         return auctionPicture;
     }
 
@@ -132,35 +135,33 @@ public class AuctionItemObj {
     }
 
     public String getAuctionDescription() throws ClassNotFoundException {
-        
+
         //System.out.println("auctionTitle");
         Class.forName("com.mysql.jdbc.Driver");
-        String temp ="";
-        
+        String temp = "";
+
         String sql = "SELECT auctionDescription FROM auctionitemTable WHERE auctionActive = true";
-          //create the statement that you want to find from the string
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
             //had to add this to register driver for some reason. 
             //Class.forName("com.mysql.jdbc.Driver");
 
-           ResultSet rs =  stmt.executeQuery();
-          
-              while (rs.next()) {
-               temp =  rs.getString("auctionDescription");
-               System.out.println(temp + " %%%%%");
+            ResultSet rs = stmt.executeQuery();
 
-               }
-             
+            while (rs.next()) {
+                temp = rs.getString("auctionDescription");
+                System.out.println(temp + " %%%%%");
+
+            }
 
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
         auctionDescription = temp;
-          
+
         return auctionDescription;
     }
 
@@ -212,10 +213,13 @@ public class AuctionItemObj {
     public String toString() {
         return "AuctionItemObj{" + "auctionTitle=" + auctionTitle + ", auctionPicture=" + auctionPicture + ", auctionDescription=" + auctionDescription + ", auctionID=" + auctionID + ", specsURL=" + specsURL + ", itemLocation=" + itemLocation + ", auctionReservePrice=" + auctionReservePrice + ", auctionActive=" + auctionActive + ", auctionPoolOfFunds=" + auctionPoolOfFunds + '}';
     }
-    
-    
-        
-    public AuctionItemObj getAuctionItemObject() throws ClassNotFoundException{
+
+    /**
+     * A method to get the whole auction object.
+     * @return
+     * @throws ClassNotFoundException 
+     */
+    public AuctionItemObj getAuctionItemObject() throws ClassNotFoundException {
         //need to create a object to get all of the information about the auction Object
         //use the getters and setters for the object from there.
         int aucID = 0;
@@ -225,172 +229,168 @@ public class AuctionItemObj {
         String aucSpecURL = null;
         String aucItemLocation = null;
         String aucReserve;
-        boolean aucActive = false; 
+        boolean aucActive = false;
         int aucTotalBidsPool = 0;
-        
-                
-        Class.forName("com.mysql.jdbc.Driver");        
+
+        Class.forName("com.mysql.jdbc.Driver");
         //only should be one auction active at a time...
         String sql = "SELECT * FROM auctionitemtable WHERE auctionActive = true";
-          //create the statement that you want to find from the string
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
+                PreparedStatement stmt = con.prepareStatement(sql);) {
             //had to add this to register driver for some reason. 
             //Class.forName("com.mysql.jdbc.Driver");
 
-           ResultSet rs =  stmt.executeQuery();
-          
-              while (rs.next()) {
-               aucID =  rs.getInt("auctionID");
-               aucTitle = rs.getString("auctionTitle");
-               aucDescription = rs.getString("auctionDescription");
-               aucPicture = rs.getString("auctionPicture");
-               aucSpecURL = rs.getString("auctionSpecURL");
-               aucItemLocation = rs.getString("auctionItemLocation");
-               aucActive = rs.getBoolean("auctionActive");
-               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
-               
+            ResultSet rs = stmt.executeQuery();
 
-               }
-             
-              
+            while (rs.next()) {
+                aucID = rs.getInt("auctionID");
+                aucTitle = rs.getString("auctionTitle");
+                aucDescription = rs.getString("auctionDescription");
+                aucPicture = rs.getString("auctionPicture");
+                aucSpecURL = rs.getString("auctionSpecURL");
+                aucItemLocation = rs.getString("auctionItemLocation");
+                aucActive = rs.getBoolean("auctionActive");
+                aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
+
+            }
+
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-        AuctionItemObj ao = new AuctionItemObj(aucPicture,aucTitle,aucDescription,aucID,aucSpecURL,aucItemLocation,aucActive,aucTotalBidsPool);
-          
+
+        AuctionItemObj ao = new AuctionItemObj(aucPicture, aucTitle, aucDescription, aucID, aucSpecURL, aucItemLocation, aucActive, aucTotalBidsPool);
+
         return ao;
     }
-    
-    public int updateTotalBids(int bid) throws ClassNotFoundException{
-        int aucTotalBidsPool = 0;
- 
-        
-        Class.forName("com.mysql.jdbc.Driver");        
-        //only should be one auction active at a time...
-        String sql = "SELECT auctionTotalBidsPool " +
-        "FROM auctionitemtable " +
-        "WHERE auctionActive = '1'";//true setup as tinyint
-    
-         //create the statement that you want to find from the string
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-           
-                          
 
-           ResultSet rs =  stmt.executeQuery();
-          
-              while (rs.next()) {
-             
-               aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
-  
-               }
-    
-              
-        } catch (SQLException ex) {
-            System.out.println("no customer found in get auction description");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-            String sql2 = "UPDATE auctionitemtable " +
-            "SET auctionTotalBidsPool = ? " +
-            "WHERE auctionActive = ?";
-        
-            //update with the new value 
-           try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt2 = con.prepareStatement(sql2);
-               ){
-               //add to current value 
-               aucTotalBidsPool += bid;
-               //got to complete this  - adding values and updating old / this is a new method also
-               //stmt.setBoolean(1, obj.isIsActive());//making sure the auction is active might be able to derrive this also
-               stmt2.setInt(1, aucTotalBidsPool);
-               stmt2.setBoolean(2, true);
-               System.out.println("((((((( " + aucTotalBidsPool);
-               stmt2.executeUpdate();
-                
-              
-        } catch (SQLException ex) {
-            System.out.println("no customer found in get auction description");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            
-           //return the total bids 
-           return aucTotalBidsPool;
-    }
-    
-    public boolean checkAuctionWon(int auctionTotalAmount) throws ClassNotFoundException{
-        
-        int auctionReserve = 0;
-        boolean returnVal = false;
-        
-         Class.forName("com.mysql.jdbc.Driver");        
-        //only should be one auction active at a time...
-        String sql = "SELECT auctionReserve " +
-        "FROM auctionitemtable ";
-       
-    
-         //create the statement that you want to find from the string
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-           
-           ResultSet rs =  stmt.executeQuery();
-          
-              while (rs.next()) {
-             
-               auctionReserve = rs.getInt("auctionReserve");
-  
-               }
-    
-              
-        } catch (SQLException ex) {
-            System.out.println("no customer found in get auction description");
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(auctionTotalAmount >= auctionReserve){
-            returnVal = true;
-              System.out.println("Auction won = true");
-              System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");
-          }
-        
-        return returnVal;
-    }
     
     /**
-     * A method which closes the active auction by making "auctionActive = 0"
-     * 
+     * A method which updates the total amount bid on the auction.
+     * @param bid the amount bid on the auction by the user
+     * @return
      * @throws ClassNotFoundException 
      */
-    public void closeAuction() throws ClassNotFoundException{
+    public int updateTotalBids(int bid) throws ClassNotFoundException {
+        int aucTotalBidsPool = 0;
+
+        Class.forName("com.mysql.jdbc.Driver");
+        //only should be one auction active at a time...
+        String sql = "SELECT auctionTotalBidsPool "
+                + "FROM auctionitemtable "
+                + "WHERE auctionActive = '1'";//true setup as tinyint
+
+        //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+                PreparedStatement stmt = con.prepareStatement(sql);) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                aucTotalBidsPool = rs.getInt("auctionTotalBidsPool");
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String sql2 = "UPDATE auctionitemtable "
+                + "SET auctionTotalBidsPool = ? "
+                + "WHERE auctionActive = ?";
+
+        //update with the new value 
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+                PreparedStatement stmt2 = con.prepareStatement(sql2);) {
+            //add to current value 
+            aucTotalBidsPool += bid;
+            //got to complete this  - adding values and updating old / this is a new method also
+            //stmt.setBoolean(1, obj.isIsActive());//making sure the auction is active might be able to derrive this also
+            stmt2.setInt(1, aucTotalBidsPool);
+            stmt2.setBoolean(2, true);
+            System.out.println("((((((( " + aucTotalBidsPool);
+            stmt2.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //return the total bids 
+        return aucTotalBidsPool;
+    }
+
+    
+    /**
+     * 
+     * @param auctionTotalAmount this is the updated fund in the pool of money - we compare this to the 
+     * table column to see if the amount bid has hit the reserve
+     * @return
+     * @throws ClassNotFoundException 
+     */
+    public boolean checkAuctionWon(int auctionTotalAmount) throws ClassNotFoundException {
+
+        int auctionReserve = 0;
+        boolean returnVal = false;
+
+        Class.forName("com.mysql.jdbc.Driver");
+        //only should be one auction active at a time...
+        String sql = "SELECT auctionReserve "
+                + "FROM auctionitemtable ";
+
+        //create the statement that you want to find from the string
+        try (Connection con = DriverManager.getConnection(url, "root", "");
+                PreparedStatement stmt = con.prepareStatement(sql);) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                auctionReserve = rs.getInt("auctionReserve");
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("no customer found in get auction description");
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (auctionTotalAmount >= auctionReserve) {
+            returnVal = true;
+            System.out.println("Auction won = true");
+            System.out.println("Need to finish up auction - auction has won what needs to happen next close auction, sort out winner");
+        }
+
+        return returnVal;
+    }
+
+    /**
+     * A method which closes the active auction by making "auctionActive = 0"
+     *
+     * @throws ClassNotFoundException
+     */
+    public void closeAuction() throws ClassNotFoundException {
         System.out.println("in close auction");
         //get item object
-          Class.forName("com.mysql.jdbc.Driver");        
+        Class.forName("com.mysql.jdbc.Driver");
         //only should be one auction active at a time...
-        String sql = "UPDATE auctionitemtable " +
-        "SET auctionActive='0' " +
-         "WHERE auctionActive='1'";
-        
-    
-         //create the statement that you want to find from the string
+        String sql = "UPDATE auctionitemtable "
+                + "SET auctionActive='0' "
+                + "WHERE auctionActive='1'";
+
+        //create the statement that you want to find from the string
         try (Connection con = DriverManager.getConnection(url, "root", "");
-            PreparedStatement stmt = con.prepareStatement(sql);
-               ){
-          
+                PreparedStatement stmt = con.prepareStatement(sql);) {
+
             stmt.executeUpdate();
-              
-              
+
         } catch (SQLException ex) {
             System.out.println("no customer found in get auction description");
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-            
+
 }
