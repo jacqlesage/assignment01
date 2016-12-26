@@ -7,22 +7,13 @@
 
 
 <% 
-    AuctionItemObj a = null;
+    AuctionItemObj a = new AuctionItemObj().getAuctionItemObject();
+    
    CustomerObj c = new CustomerObj();
     if(CustomerDAO.customerFound){
-    a = new AuctionItemObj();
+
     HttpSession session1 = request.getSession();
        
-//   if(session1 == null){
-//        System.out.println("Customer is null :(");
-//    }else{
-//      c = new CustomerObj();
-//       c = (CustomerObj) session1.getAttribute("customer");
-//            System.out.println("attrib names " + session1.getAttribute("customer").toString());
-//          }
-//    }else{
-//        
-//    }
 
     if(session1 != null){
         c = new CustomerObj();
@@ -67,7 +58,7 @@
         <div class="top-bar-right">
             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
                 <li class="has-submenu">
-                    <a href="login.html">Login</a>
+                    <a href="#">Login</a>
                     <ul class="submenu menu vertical" data-submenu>
                         <div class="submenu-form">
                             <form method="post" action="LogInServlet">
