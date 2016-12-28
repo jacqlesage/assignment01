@@ -41,8 +41,10 @@
     
     if(CustomerDAO.customerFound){ 
    ao = a.getAuctionItemObject();
+   
 }
-
+    Integer name = (Integer)request.getAttribute("value");
+    System.out.println(name + "))))))");
 %>
     
     <div class="dash-inner">
@@ -83,8 +85,8 @@
             <div class="row">
                 <div class="large-4 small-6 columns">
                     <div class="dash-inner-item">
-                        <h4>Number of bids made:</h4>
-                        <p>6</p>
+                        <h4>Current pool of money:(highlighted when you bid only)</h4>
+                        <p id="showWhenBid"><6***<%out.print(name); %></p>
                     </div>
                 </div>
                 <div class="large-4 small-6 columns">
@@ -124,6 +126,8 @@
                             <li><button class="button" type="submit">Bid on this auction</button></li>
                             <li><button class="button">Go to auction page</button></li>
                             
+                           
+                            
                             <%}else{%>
                                 <li>We have a winner! <input type="text" value="Please wait while we congratulate our latest winner" readonly></li>
 <!--                                <li>  What's on auction: <input id="auctionTitle" name="auctionTitle" value="Please wait while we congratulate our latest winner" > </li>
@@ -138,10 +142,14 @@
 <!--                            <li><button class="button" type="submit">Bid on this auction</button></li>
                             <li><button class="button">Go to auction page</button></li>-->
                             </form>
+
+
                         </ul>
 
                     </div>
                 </div>
+                
+                
                 <div class="large-6 small-9 small-centered">
                     <div class="dash-inner-item">
                         <h3>Your Details</h3>

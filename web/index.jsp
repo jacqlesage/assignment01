@@ -31,6 +31,8 @@
                                 </br>
                                 </br>
                                 <h3>Would you like a brand new iPhone 6s for $1?</h3>
+                                
+                                
                                 <p>
                                     Welcome to Dollar Luxury! Head down below and follow the 3 steps. Welcome to Dollar Luxury! Head down below and follow the 3 steps. Welcome to Dollar Luxury! Head down below and follow the 3 steps.
                                 </p>
@@ -143,7 +145,8 @@
             <div class="large-4 small-11 small centered columns">
                     <div class="content-side-mobile-bottom">
                         <div class="content-side-item">
-                            <h3>Current Auction</h3>
+                            <div id="results"></div>
+                            <h3>Current Auction <div id="results"></div> </h3>
                             <h4>iPhone 6s - Any Color!</h4>
                             <a href="auction.jsp">
                                 <img src="img/iphone.jpg">

@@ -117,7 +117,9 @@ public class handleAuctionServlet extends HttpServlet {
              
             }    
             //redirect back to the dashboard
-            response.sendRedirect("dashboard.jsp");
+            //response.sendRedirect("dashboard.jsp");
+            request.setAttribute("value", totalAuctionBids);
+            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
             
         }    
 

@@ -32,7 +32,7 @@ public class LogInServlet extends HttpServlet {
         String password = request.getParameter("Password");
         HttpSession s = request.getSession();
 
-        System.out.println(password);
+        System.out.println(password + "*****^^%$%#$#");
         System.out.println(emailAddress);
 
         //check database for email address
@@ -56,6 +56,9 @@ public class LogInServlet extends HttpServlet {
                 
                        
                 
+            }else{
+                
+                response.sendRedirect("index.jsp");
             }
 
         } catch (ClassNotFoundException ex) {
@@ -65,7 +68,7 @@ public class LogInServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws  IOException, ServletException {
         System.out.println("herereer");
         processRequest(request, response);
 

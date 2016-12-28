@@ -18,6 +18,7 @@
     if(session1 != null){
         c = new CustomerObj();
        c = (CustomerObj) session1.getAttribute("customer");
+      
             System.out.println("attrib names " + session1.getAttribute("customer").toString());
     }
     }
@@ -36,8 +37,11 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-    <script type = "text/javascript" src = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/><!--
+-->    <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-3.1.1.min.js" ></script><!--
+-->    <script type = "text/javascript" src = "js/checkUsernamePassword.js"></script>
+    
 </head>
 
 <body>
@@ -61,11 +65,12 @@
                     <a href="#">Login</a>
                     <ul class="submenu menu vertical" data-submenu>
                         <div class="submenu-form">
-                            <form method="post" action="LogInServlet">
-                                <li><p>Email:</p><input type="text" name="Email"></input></li>
-                                <li><p>Password:</p><input type="text" name="Password"></input></li>
-                                <li><button class="button">Submit</button></li>
+                            <form id="logInForm" method="post" action="LogInServlet">
+                                <li><p>Email:</p><input type="text" name="Email" id="userName1" ></input></li>
+                                <li><p>Password:</p><input type="text" name="Password" id="password1"></input></li>
+                                <li><button class="button" >Submit</button></li>
                             </form>
+                                                        
                         </div>
                                       <%  }else if(CustomerDAO.customerFound && c != null){ %>
                                       
